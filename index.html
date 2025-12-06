@@ -1,296 +1,347 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-<link rel="icon" href="https://play-lh.googleusercontent.com/Ki0OaYHMw67Yw1ETHV2eyKZAST7JMVjCIrNGzmcadwHEkhq3BU_CYtt1IC9ZqKcE7iA=w480-h960-rw" type="image/png">
+  <link rel="icon"
+    href="https://play-lh.googleusercontent.com/Ki0OaYHMw67Yw1ETHV2eyKZAST7JMVjCIrNGzmcadwHEkhq3BU_CYtt1IC9ZqKcE7iA=w480-h960-rw"
+    type="image/png">
 
 
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-318770758">
-</script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-318770758">
+  </script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-  gtag('config', 'AW-318770758');
-</script>
-
-    
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Crie recibos online grátis com nosso criador de recibos fácil de usar. Perfeito para aluguel, vendas e mais. Gere seu recibo em PDF em minutos.">
-    <meta name="keywords" content="criador de recibo online, recibo de pagamento, recibo de aluguel, recibo grátis, gerar recibo em PDF">
-    <meta name="author" content="Seus Apps">
-    <title>Criador de Recibo Online Grátis | Gere Recibos em PDF</title>
-    <style>
-        body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            text-align: center;
-            background: linear-gradient(135deg, #003f8a, #002f6c);
-            color: #fff;
-            margin: 0;
-            padding: 40px 20px;
-        }
-
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
-            color: #ffffff;
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
-        }
-
-        p {
-            font-size: 1.1em;
-            margin-bottom: 20px;
-            color: #ddd;
-            line-height: 1.6;
-        }
-
-        .app-container {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 30px;
-        }
-
-        .app-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 15px;
-            width: 320px;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s, box-shadow 0.3s;
-            text-align: left;
-        }
-
-        .app-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-        }
-
-        .app-icon {
-            width: 60px;
-            height: 60px;
-            object-fit: cover;
-            border-radius: 15px;
-            margin-right: 15px;
-            vertical-align: middle;
-        }
-
-        .app-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
-        .app-name {
-            font-size: 1.5em;
-            font-weight: bold;
-            color: #ffffff;
-        }
-
-        .app-description {
-            font-size: 0.9em;
-            color: #ddd;
-            margin: 10px 0;
-        }
-
-        .app-rating {
-            margin: 10px 0;
-        }
-
-        .app-price {
-            font-size: 0.9em;
-            color: #ffdf00;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .stars {
-            color: #ffdf00;
-            font-size: 1.2em;
-            margin-right: 5px;
-        }
-
-        .app-screenshots {
-            display: flex;
-            overflow-x: auto;
-            gap: 10px;
-            padding: 10px 0;
-        }
-
-        .app-screenshots img {
-            width: 130px;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .app-button {
-            display: block;
-            width: 100%;
-            text-align: center;
-            background: #004499;
-            color: #fff;
-            padding: 12px 0;
-            border: none;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: background-color 0.3s, box-shadow 0.3s;
-        }
-
-        .app-button:hover {
-            background: #003377;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-        }
-
-        footer {
-            margin-top: 40px;
-            font-size: 0.9em;
-            color: #ccc;
-        }
-     /* Estilos para o banner no rodapé */
-/* Estilos para o rodapé fixo */
-footer {
-  background-color: linear-gradient(135deg, #003f8a, #002f6c); /* Cor mais escura */
-  padding: 20px;
-  position: relative;
-}
-
-/* Estilos para o banner no rodapé */
-.footer-banner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.8); /* Preto mais claro */
-  padding: 10px 20px;
-  border-top: 1px solid #333;
-  position: fixed; /* Fixa o banner no rodapé */
-  bottom: 0;
-  left: 0;
-  right: 0;
-  box-sizing: border-box;
-  z-index: 1000; /* Garante que o banner fique acima de outros elementos */
-}
-
-.footer-banner img {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  object-fit: cover;
-  margin-right: 10px;
-}
-
-.footer-content {
-  display: flex;
-  flex-direction: column;
-  color: #fff;
-  margin-right: 10px;
-}
-
-.footer-content h3 {
-  margin: 0;
-  font-size: 1.1em;
-  font-weight: bold;
-}
-
-.footer-content p {
-  margin: 5px 0 0;
-  font-size: 0.85em;
-}
-
-.download-button {
-  background-color: #28a745; /* Verde */
-  color: white;
-  padding: 8px 12px;
-  text-decoration: none;
-  border-radius: 20px;
-  font-weight: bold;
-  font-size: 0.9em;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s, box-shadow 0.3s;
-  max-width: 150px; /* Limita a largura do botão */
-  white-space: nowrap; /* Impede que o texto quebre em várias linhas */
-}
-
-.download-button:hover {
-  background-color: #218838; /* Verde mais escuro no hover */
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-}
-
-/* Responsividade */
-@media (max-width: 768px) {
-  .footer-banner {
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-  }
-
-  .footer-content {
-    margin-right: 0;
-    margin-bottom: 10px;
-  }
-
-  .download-button {
-    width: 100%;
-    text-align: center;
-  }
-}
+    gtag('config', 'AW-318770758');
+  </script>
 
 
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Crie recibos online grátis com nosso criador de recibos fácil de usar. Perfeito para aluguel, vendas e mais. Gere seu recibo em PDF em minutos.">
+  <!-- 🔥 Keywords otimizadas -->
+  <meta name="keywords" content="
+      criador de recibo online,
+      recibo de pagamento,
+      recibo de aluguel,
+      recibo grátis,
+      gerar recibo em PDF,
+      como emitir recibo de pagamento,
+      gerador de recibo online,
+      recibo online grátis,
+      comprovante de pagamento,
+      modelo de recibo,
+      modelo de recibo de prestação de serviço,
+      recibo de aluguel word grátis,
+      recibo de prestação,
+      como fazer recibo de prestação de serviço,
+      fazer recibo online,
+      gerar recibo,
+      preencher recibo simples,
+      recibo online de pagamento,
+      recibo simples online grátis
+      ">
+  <meta name="author" content="Seus Apps">
+  <title>Criador de Recibo Online Grátis | Gere Recibos em PDF</title>
+  <style>
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      text-align: center;
+      background: linear-gradient(135deg, #003f8a, #002f6c);
+      color: #fff;
+      margin: 0;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      color: #ffffff;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    p {
+      font-size: 1.1em;
+      margin-bottom: 20px;
+      color: #ddd;
+      line-height: 1.6;
+    }
+
+    .app-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .app-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 15px;
+      width: 320px;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s, box-shadow 0.3s;
+      text-align: left;
+    }
+
+    .app-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .app-icon {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 15px;
+      margin-right: 15px;
+      vertical-align: middle;
+    }
+
+    .app-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .app-name {
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #ffffff;
+    }
+
+    .app-description {
+      font-size: 0.9em;
+      color: #ddd;
+      margin: 10px 0;
+    }
+
+    .app-rating {
+      margin: 10px 0;
+    }
+
+    .app-price {
+      font-size: 0.9em;
+      color: #ffdf00;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .stars {
+      color: #ffdf00;
+      font-size: 1.2em;
+      margin-right: 5px;
+    }
+
+    .app-screenshots {
+      display: flex;
+      overflow-x: auto;
+      gap: 10px;
+      padding: 10px 0;
+    }
+
+    .app-screenshots img {
+      width: 130px;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .app-button {
+      display: block;
+      width: 100%;
+      text-align: center;
+      background: #004499;
+      color: #fff;
+      padding: 12px 0;
+      border: none;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s, box-shadow 0.3s;
+    }
+
+    .app-button:hover {
+      background: #003377;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    footer {
+      margin-top: 40px;
+      font-size: 0.9em;
+      color: #ccc;
+    }
+
+    /* Estilos para o banner no rodapé */
+    /* Estilos para o rodapé fixo */
+    footer {
+      background-color: linear-gradient(135deg, #003f8a, #002f6c);
+      /* Cor mais escura */
+      padding: 20px;
+      position: relative;
+    }
+
+    /* Estilos para o banner no rodapé */
+    .footer-banner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.8);
+      /* Preto mais claro */
+      padding: 10px 20px;
+      border-top: 1px solid #333;
+      position: fixed;
+      /* Fixa o banner no rodapé */
+      bottom: 0;
+      left: 0;
+      right: 0;
+      box-sizing: border-box;
+      z-index: 1000;
+      /* Garante que o banner fique acima de outros elementos */
+    }
+
+    .footer-banner img {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      object-fit: cover;
+      margin-right: 10px;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      color: #fff;
+      margin-right: 10px;
+    }
+
+    .footer-content h3 {
+      margin: 0;
+      font-size: 1.1em;
+      font-weight: bold;
+    }
+
+    .footer-content p {
+      margin: 5px 0 0;
+      font-size: 0.85em;
+    }
+
+    .download-button {
+      background-color: #28a745;
+      /* Verde */
+      color: white;
+      padding: 8px 12px;
+      text-decoration: none;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 0.9em;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s, box-shadow 0.3s;
+      max-width: 150px;
+      /* Limita a largura do botão */
+      white-space: nowrap;
+      /* Impede que o texto quebre em várias linhas */
+    }
+
+    .download-button:hover {
+      background-color: #218838;
+      /* Verde mais escuro no hover */
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+      .footer-banner {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+      }
+
+      .footer-content {
+        margin-right: 0;
+        margin-bottom: 10px;
+      }
+
+      .download-button {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-    <h1>Criador de Recibo Online Grátis</h1>
-    <p>Com nosso criador de recibo online, você pode gerar recibos de pagamento, aluguel ou vendas de maneira fácil e rápida. Basta preencher os dados, escolher o formato e gerar seu recibo em PDF pronto para ser enviado ou impresso. Ideal para empresários, freelancers e proprietários.</p>
+  <h1>Criador de Recibo Online Grátis</h1>
+  <p>Com nosso criador de recibo online, você pode gerar recibos de pagamento, aluguel ou vendas de maneira fácil e
+    rápida. Basta preencher os dados, escolher o formato e gerar seu recibo em PDF pronto para ser enviado ou impresso.
+    Ideal para empresários, freelancers e proprietários.</p>
 
-    <div class="app-container">
-        <!-- App Card -->
-        <div class="app-card">
-            <div class="app-header">
-                <img src="https://play-lh.googleusercontent.com/Ki0OaYHMw67Yw1ETHV2eyKZAST7JMVjCIrNGzmcadwHEkhq3BU_CYtt1IC9ZqKcE7iA=w240-h480-rw" alt="Ícone do Criador de Recibo" class="app-icon">
-                <div class="app-name">Recibo para Clientes </div>
-            </div>
-            <div class="app-description">Gere recibos de forma rápida e fácil, direto no seu celular. Ideal para quem precisa de recibos profissionais em PDF, sem complicações.</div>
-            <div class="app-rating">
-                <span class="stars">★★★★☆</span> 4.8/5 (230 avaliações)
-            </div>
-            <div class="app-price">Gratuito</div>
-            <div class="app-screenshots">
-                <img src="https://play-lh.googleusercontent.com/KIyOlRNO3r-YAJ3hX2FoX_cC9CPJwVbMqWWXu2bzewZV4XrIKaTE279PkWTwUUPZifw7=w2560-h1440-rw" alt="Screenshot do Criador de Recibos">
-                <img src="https://play-lh.googleusercontent.com/DxV4O2ScXRAx3zzk05VmfK4lI7xGQNm34SY8S3UY6UmcaIV7MzVjsKuLhoaSk2mCZr4=w2560-h1440-rw" alt="Interface do Criador de Recibos">
-                <img src="https://play-lh.googleusercontent.com/5qmZMfpheXrnALFXl3l1xMNAfl-XVdqBUEF-9fwC49fk2zIRTDUe-R7ECoV4GoMihg=w5120-h2880" alt="Interface do Criador de Recibos">
-                <img src="https://play-lh.googleusercontent.com/FyeMiTd3bXprEkBuMAmhEQ68EM-Egz2GT9DKo6HVbMVFMaAyZ_0aBL9I9HQ3PWviFXw=w5120-h2880" alt="Interface do Criador de Recibos">
-            </div>
+  <div class="app-container">
+    <!-- App Card -->
+    <div class="app-card">
+      <div class="app-header">
+        <img
+          src="https://play-lh.googleusercontent.com/Ki0OaYHMw67Yw1ETHV2eyKZAST7JMVjCIrNGzmcadwHEkhq3BU_CYtt1IC9ZqKcE7iA=w240-h480-rw"
+          alt="Ícone do Criador de Recibo" class="app-icon">
+        <div class="app-name">Recibo para Clientes </div>
+      </div>
+      <div class="app-description">Gere recibos de forma rápida e fácil, direto no seu celular. Ideal para quem precisa
+        de recibos profissionais em PDF, sem complicações.</div>
+      <div class="app-rating">
+        <span class="stars">★★★★☆</span> 4.8/5 (230 avaliações)
+      </div>
+      <div class="app-price">Gratuito</div>
+      <div class="app-screenshots">
+        <img
+          src="https://play-lh.googleusercontent.com/KIyOlRNO3r-YAJ3hX2FoX_cC9CPJwVbMqWWXu2bzewZV4XrIKaTE279PkWTwUUPZifw7=w2560-h1440-rw"
+          alt="Screenshot do Criador de Recibos">
+        <img
+          src="https://play-lh.googleusercontent.com/DxV4O2ScXRAx3zzk05VmfK4lI7xGQNm34SY8S3UY6UmcaIV7MzVjsKuLhoaSk2mCZr4=w2560-h1440-rw"
+          alt="Interface do Criador de Recibos">
+        <img
+          src="https://play-lh.googleusercontent.com/5qmZMfpheXrnALFXl3l1xMNAfl-XVdqBUEF-9fwC49fk2zIRTDUe-R7ECoV4GoMihg=w5120-h2880"
+          alt="Interface do Criador de Recibos">
+        <img
+          src="https://play-lh.googleusercontent.com/FyeMiTd3bXprEkBuMAmhEQ68EM-Egz2GT9DKo6HVbMVFMaAyZ_0aBL9I9HQ3PWviFXw=w5120-h2880"
+          alt="Interface do Criador de Recibos">
+      </div>
 
-         
-            <a href="intent://play.google.com/store/apps/details?id=com.uscapps.recibos&pcampaignid=web_redirect#Intent;scheme=https;package=com.android.vending;action=android.intent.action.VIEW;end;" class="app-button">
-    Baixar o App
-</a>
-        </div>
+
+      <a href="intent://play.google.com/store/apps/details?id=com.uscapps.recibos&pcampaignid=web_redirect#Intent;scheme=https;package=com.android.vending;action=android.intent.action.VIEW;end;"
+        class="app-button">
+        Baixar o App
+      </a>
     </div>
-
-    <footer>
-
-        <!-- Banner no rodapé -->
-
-  <div class="footer-banner">
-    <img src="https://play-lh.googleusercontent.com/Ki0OaYHMw67Yw1ETHV2eyKZAST7JMVjCIrNGzmcadwHEkhq3BU_CYtt1IC9ZqKcE7iA=w240-h480-rw" alt="Ícone do App">
-    <div class="footer-content">
-      <h3>Recibo para Clientes</h3>
-      <p>Gere recibos profissionais com facilidade. Baixe agora!</p>
-    </div>
-    <a href="intent://play.google.com/store/apps/details?id=com.uscapps.recibos&pcampaignid=web_redirect#Intent;scheme=https;package=com.android.vending;action=android.intent.action.VIEW;end;" class="download-button">Baixar</a>
   </div>
-        © 2024 USC Apps. Todos os direitos reservados. <br>
-        Crie recibos em PDF rapidamente com nosso criador de recibos online.
-    </footer>
+
+  <footer>
+
+    <!-- Banner no rodapé -->
+
+    <div class="footer-banner">
+      <img
+        src="https://play-lh.googleusercontent.com/Ki0OaYHMw67Yw1ETHV2eyKZAST7JMVjCIrNGzmcadwHEkhq3BU_CYtt1IC9ZqKcE7iA=w240-h480-rw"
+        alt="Ícone do App">
+      <div class="footer-content">
+        <h3>Recibo para Clientes</h3>
+        <p>Gere recibos profissionais com facilidade. Baixe agora!</p>
+      </div>
+      <a href="intent://play.google.com/store/apps/details?id=com.uscapps.recibos&pcampaignid=web_redirect#Intent;scheme=https;package=com.android.vending;action=android.intent.action.VIEW;end;"
+        class="download-button">Baixar</a>
+    </div>
+    © 2024 USC Apps. Todos os direitos reservados. <br>
+    Crie recibos em PDF rapidamente com nosso criador de recibos online.
+  </footer>
 
 </body>
+
 </html>
