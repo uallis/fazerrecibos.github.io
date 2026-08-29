@@ -1,278 +1,469 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <link rel="icon"
     href="https://play-lh.googleusercontent.com/Ki0OaYHMw67Yw1ETHV2eyKZAST7JMVjCIrNGzmcadwHEkhq3BU_CYtt1IC9ZqKcE7iA=w480-h960-rw"
     type="image/png">
 
+  <meta name="description"
+    content="Crie recibos online grátis. Preencha os dados, gere seu recibo e salve em PDF rapidamente.">
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-318770758">
-  </script>
+  <meta name="keywords"
+    content="criador de recibo online, recibo de pagamento, recibo de aluguel, recibo grátis, gerar recibo PDF, recibo online grátis, comprovante de pagamento, modelo de recibo">
+
+  <meta name="author" content="USC Apps">
+
+  <title>Criador de Recibo Online Grátis | USC Apps</title>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-318770758"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
 
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
     gtag('config', 'AW-318770758');
   </script>
 
-
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description"
-    content="Crie recibos online grátis com nosso criador de recibos fácil de usar. Perfeito para aluguel, vendas e mais. Gere seu recibo em PDF em minutos.">
-  <!-- 🔥 Keywords otimizadas -->
-  <meta name="keywords" content="
-      criador de recibo online,
-      recibo de pagamento,
-      recibo de aluguel,
-      recibo grátis,
-      gerar recibo em PDF,
-      como emitir recibo de pagamento,
-      gerador de recibo online,
-      recibo online grátis,
-      comprovante de pagamento,
-      modelo de recibo,
-      modelo de recibo de prestação de serviço,
-      recibo de aluguel word grátis,
-      recibo de prestação,
-      como fazer recibo de prestação de serviço,
-      fazer recibo online,
-      gerar recibo,
-      preencher recibo simples,
-      recibo online de pagamento,
-      recibo simples online grátis
-      ">
-  <meta name="author" content="Seus Apps">
-  <title>Criador de Recibo Online Grátis | Gere Recibos em PDF</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --azul: #0757b8;
+      --azul-escuro: #033b82;
+      --azul-claro: #eaf3ff;
+      --verde: #16a34a;
+      --verde-hover: #15803d;
+      --texto: #172033;
+      --cinza: #64748b;
+      --borda: #dbe3ef;
+      --branco: #ffffff;
+      --fundo: #f4f7fb;
+    }
+
     body {
-      font-family: 'Helvetica Neue', Arial, sans-serif;
-      text-align: center;
-      background: linear-gradient(135deg, #003f8a, #002f6c);
-      color: #fff;
       margin: 0;
-      padding: 40px 20px;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--fundo);
+      color: var(--texto);
     }
 
-    h1 {
-      font-size: 2.5em;
-      margin-bottom: 20px;
-      color: #ffffff;
-      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-    }
+    /* =========================
+       TOPO
+    ========================= */
 
-    p {
-      font-size: 1.1em;
-      margin-bottom: 20px;
-      color: #ddd;
-      line-height: 1.6;
-    }
+    header {
+      background:
+        radial-gradient(circle at top right, rgba(255,255,255,.16), transparent 35%),
+        linear-gradient(135deg, var(--azul), var(--azul-escuro));
 
-    .app-container {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 30px;
-    }
-
-    .app-card {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 15px;
-      width: 320px;
-      padding: 20px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      transition: transform 0.3s, box-shadow 0.3s;
-      text-align: left;
-    }
-
-    .app-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-    }
-
-    .app-icon {
-      width: 60px;
-      height: 60px;
-      object-fit: cover;
-      border-radius: 15px;
-      margin-right: 15px;
-      vertical-align: middle;
-    }
-
-    .app-header {
-      display: flex;
-      align-items: center;
-      margin-bottom: 10px;
-    }
-
-    .app-name {
-      font-size: 1.5em;
-      font-weight: bold;
-      color: #ffffff;
-    }
-
-    .app-description {
-      font-size: 0.9em;
-      color: #ddd;
-      margin: 10px 0;
-    }
-
-    .app-rating {
-      margin: 10px 0;
-    }
-
-    .app-price {
-      font-size: 0.9em;
-      color: #ffdf00;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-
-    .stars {
-      color: #ffdf00;
-      font-size: 1.2em;
-      margin-right: 5px;
-    }
-
-    .app-screenshots {
-      display: flex;
-      overflow-x: auto;
-      gap: 10px;
-      padding: 10px 0;
-    }
-
-    .app-screenshots img {
-      width: 130px;
-      height: auto;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    }
-
-    .app-button {
-      display: block;
-      width: 100%;
+      color: white;
+      padding: 45px 20px 70px;
       text-align: center;
-      background: #004499;
-      color: #fff;
-      padding: 12px 0;
-      border: none;
-      border-radius: 25px;
-      text-decoration: none;
-      font-weight: bold;
-      margin-top: 15px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      transition: background-color 0.3s, box-shadow 0.3s;
     }
 
-    .app-button:hover {
-      background: #003377;
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    header h1 {
+      margin: 0 0 12px;
+      font-size: clamp(2rem, 5vw, 3.2rem);
     }
 
-    footer {
-      margin-top: 40px;
-      font-size: 0.9em;
-      color: #ccc;
+    header p {
+      max-width: 750px;
+      margin: auto;
+      color: #e8f1ff;
+      line-height: 1.7;
+      font-size: 1.05rem;
     }
 
-    /* Estilos para o banner no rodapé */
-    /* Estilos para o rodapé fixo */
-    footer {
-      background-color: linear-gradient(135deg, #003f8a, #002f6c);
-      /* Cor mais escura */
-      padding: 20px;
+    /* =========================
+       CONTAINER
+    ========================= */
+
+    .container {
+      width: min(1100px, calc(100% - 30px));
+      margin: -35px auto 120px;
       position: relative;
     }
 
-    /* Estilos para o banner no rodapé */
-    .footer-banner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: rgba(0, 0, 0, 0.8);
-      /* Preto mais claro */
-      padding: 10px 20px;
-      border-top: 1px solid #333;
-      position: fixed;
-      /* Fixa o banner no rodapé */
-      bottom: 0;
-      left: 0;
-      right: 0;
-      box-sizing: border-box;
-      z-index: 1000;
-      /* Garante que o banner fique acima de outros elementos */
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
     }
 
-    .footer-banner img {
-      width: 40px;
-      height: 40px;
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 25px;
+      box-shadow: 0 12px 35px rgba(0, 35, 90, .10);
+      border: 1px solid var(--borda);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.35rem;
+    }
+
+    /* =========================
+       FORMULÁRIO
+    ========================= */
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      font-size: .9rem;
+      margin-bottom: 7px;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      border: 1px solid var(--borda);
       border-radius: 10px;
-      object-fit: cover;
-      margin-right: 10px;
+      padding: 13px;
+      font-size: 1rem;
+      outline: none;
+      transition: .2s;
+      background: #fff;
     }
 
-    .footer-content {
+    input:focus,
+    textarea:focus {
+      border-color: var(--azul);
+      box-shadow: 0 0 0 3px rgba(7, 87, 184, .1);
+    }
+
+    textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .buttons {
       display: flex;
-      flex-direction: column;
-      color: #fff;
-      margin-right: 10px;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 20px;
     }
 
-    .footer-content h3 {
+    button {
+      border: 0;
+      border-radius: 10px;
+      padding: 13px 18px;
+      cursor: pointer;
+      font-size: .95rem;
+      font-weight: bold;
+      transition: .2s;
+    }
+
+    .btn-primary {
+      background: var(--azul);
+      color: white;
+      flex: 1;
+    }
+
+    .btn-primary:hover {
+      background: var(--azul-escuro);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: #eef2f7;
+      color: #334155;
+    }
+
+    .btn-secondary:hover {
+      background: #e2e8f0;
+    }
+
+    /* =========================
+       RECIBO
+    ========================= */
+
+    .receipt {
+      background: white;
+      border: 1px solid #ddd;
+      padding: 35px;
+      min-height: 600px;
+      color: #111;
+    }
+
+    .receipt-header {
+      text-align: center;
+      border-bottom: 2px solid #111;
+      padding-bottom: 20px;
+      margin-bottom: 25px;
+    }
+
+    .receipt-header h2 {
       margin: 0;
-      font-size: 1.1em;
+      font-size: 1.8rem;
+      letter-spacing: 1px;
+    }
+
+    .receipt-number {
+      margin-top: 8px;
+      color: #555;
+      font-size: .9rem;
+    }
+
+    .receipt-text {
+      line-height: 1.9;
+      font-size: 1rem;
+    }
+
+    .receipt-value {
+      background: #f4f4f4;
+      padding: 15px;
+      margin: 25px 0;
+      border-left: 5px solid #111;
+      font-size: 1.25rem;
       font-weight: bold;
     }
 
-    .footer-content p {
-      margin: 5px 0 0;
-      font-size: 0.85em;
+    .signature {
+      margin-top: 80px;
+      text-align: center;
+    }
+
+    .signature-line {
+      width: 70%;
+      margin: auto;
+      border-top: 1px solid #111;
+      padding-top: 8px;
+    }
+
+    .receipt-footer {
+      margin-top: 40px;
+      text-align: center;
+      color: #666;
+      font-size: .8rem;
+    }
+
+    /* =========================
+       APP
+    ========================= */
+
+    .app-section {
+      margin-top: 30px;
+      background:
+        radial-gradient(circle at top right, rgba(255,255,255,.18), transparent 35%),
+        linear-gradient(135deg, #0757b8, #002f6c);
+
+      color: white;
+      border-radius: 20px;
+      padding: 25px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .app-icon {
+      width: 75px;
+      height: 75px;
+      border-radius: 18px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .app-info {
+      flex: 1;
+    }
+
+    .app-info h2 {
+      margin: 0 0 6px;
+    }
+
+    .app-info p {
+      margin: 0;
+      color: #dceaff;
+      line-height: 1.5;
     }
 
     .download-button {
-      background-color: #28a745;
-      /* Verde */
+      display: inline-block;
+      background: var(--verde);
       color: white;
-      padding: 8px 12px;
       text-decoration: none;
-      border-radius: 20px;
+      padding: 13px 20px;
+      border-radius: 25px;
       font-weight: bold;
-      font-size: 0.9em;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      transition: background-color 0.3s, box-shadow 0.3s;
-      max-width: 150px;
-      /* Limita a largura do botão */
       white-space: nowrap;
-      /* Impede que o texto quebre em várias linhas */
+      transition: .2s;
     }
 
     .download-button:hover {
-      background-color: #218838;
-      /* Verde mais escuro no hover */
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+      background: var(--verde-hover);
+      transform: translateY(-2px);
     }
 
-    /* Responsividade */
-    @media (max-width: 768px) {
-      .footer-banner {
-        flex-direction: column;
-        align-items: center;
-        padding: 10px;
+    /* =========================
+       BANNER FIXO
+    ========================= */
+
+    .fixed-app {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 9999;
+
+      background: rgba(15, 23, 42, .96);
+      backdrop-filter: blur(10px);
+
+      color: white;
+      padding: 10px 16px;
+
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      box-shadow: 0 -5px 25px rgba(0,0,0,.25);
+    }
+
+    .fixed-app img {
+      width: 45px;
+      height: 45px;
+      border-radius: 10px;
+    }
+
+    .fixed-info {
+      flex: 1;
+    }
+
+    .fixed-info strong {
+      display: block;
+    }
+
+    .fixed-info span {
+      font-size: .8rem;
+      color: #cbd5e1;
+    }
+
+    .fixed-download {
+      background: #22c55e;
+      color: white;
+      padding: 10px 17px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      text-align: center;
+      padding: 35px 20px 110px;
+      color: #64748b;
+      font-size: .9rem;
+    }
+
+    /* =========================
+       IMPRESSÃO
+    ========================= */
+
+    @media print {
+
+      body {
+        background: white;
       }
 
-      .footer-content {
-        margin-right: 0;
-        margin-bottom: 10px;
+      header,
+      .form-card,
+      .app-section,
+      footer,
+      .fixed-app {
+        display: none !important;
+      }
+
+      .container {
+        width: 100%;
+        margin: 0;
+      }
+
+      .grid {
+        display: block;
+      }
+
+      .preview-card {
+        box-shadow: none;
+        border: none;
+        padding: 0;
+      }
+
+      .receipt {
+        border: none;
+        min-height: auto;
+      }
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 800px) {
+
+      header {
+        padding: 35px 18px 60px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .row {
+        grid-template-columns: 1fr;
+      }
+
+      .app-section {
+        flex-direction: column;
+        text-align: center;
       }
 
       .download-button {
         width: 100%;
         text-align: center;
+      }
+
+      .receipt {
+        padding: 22px;
+      }
+    }
+
+    @media (max-width: 500px) {
+
+      .fixed-info span {
+        display: none;
+      }
+
+      .fixed-download {
+        padding: 9px 13px;
+        font-size: .85rem;
+      }
+
+      .receipt-header h2 {
+        font-size: 1.4rem;
       }
     }
   </style>
@@ -280,67 +471,718 @@
 
 <body>
 
-  <h1>Criador de Recibo Online Grátis</h1>
-  <p>Com nosso criador de recibo online, você pode gerar recibos de pagamento, aluguel ou vendas de maneira fácil e
-    rápida. Basta preencher os dados, escolher o formato e gerar seu recibo em PDF pronto para ser enviado ou impresso.
-    Ideal para empresários, freelancers e proprietários.</p>
+  <!-- =========================
+       CABEÇALHO
+  ========================= -->
 
-  <div class="app-container">
-    <!-- App Card -->
-    <div class="app-card">
-      <div class="app-header">
-        <img
-          src="https://play-lh.googleusercontent.com/Ki0OaYHMw67Yw1ETHV2eyKZAST7JMVjCIrNGzmcadwHEkhq3BU_CYtt1IC9ZqKcE7iA=w240-h480-rw"
-          alt="Ícone do Criador de Recibo" class="app-icon">
-        <div class="app-name">Recibo para Clientes </div>
-      </div>
-      <div class="app-description">Gere recibos de forma rápida e fácil, direto no seu celular. Ideal para quem precisa
-        de recibos profissionais em PDF, sem complicações.</div>
-      <div class="app-rating">
-        <span class="stars">★★★★☆</span> 4.8/5 (230 avaliações)
-      </div>
-      <div class="app-price">Gratuito</div>
-      <div class="app-screenshots">
-        <img
-          src="https://play-lh.googleusercontent.com/KIyOlRNO3r-YAJ3hX2FoX_cC9CPJwVbMqWWXu2bzewZV4XrIKaTE279PkWTwUUPZifw7=w2560-h1440-rw"
-          alt="Screenshot do Criador de Recibos">
-        <img
-          src="https://play-lh.googleusercontent.com/DxV4O2ScXRAx3zzk05VmfK4lI7xGQNm34SY8S3UY6UmcaIV7MzVjsKuLhoaSk2mCZr4=w2560-h1440-rw"
-          alt="Interface do Criador de Recibos">
-        <img
-          src="https://play-lh.googleusercontent.com/5qmZMfpheXrnALFXl3l1xMNAfl-XVdqBUEF-9fwC49fk2zIRTDUe-R7ECoV4GoMihg=w5120-h2880"
-          alt="Interface do Criador de Recibos">
-        <img
-          src="https://play-lh.googleusercontent.com/FyeMiTd3bXprEkBuMAmhEQ68EM-Egz2GT9DKo6HVbMVFMaAyZ_0aBL9I9HQ3PWviFXw=w5120-h2880"
-          alt="Interface do Criador de Recibos">
-      </div>
+  <header>
+    <h1>🧾 Criador de Recibo Online</h1>
+
+    <p>
+      Crie seu recibo de pagamento gratuitamente.
+      Preencha os dados abaixo, visualize o documento e
+      salve ou imprima seu recibo em PDF.
+    </p>
+  </header>
 
 
-      <a href="intent://play.google.com/store/apps/details?id=com.uscapps.recibos&pcampaignid=web_redirect#Intent;scheme=https;package=com.android.vending;action=android.intent.action.VIEW;end;"
-        class="app-button">
+  <main class="container">
+
+    <div class="grid">
+
+      <!-- =========================
+           FORMULÁRIO
+      ========================= -->
+
+      <section class="card form-card">
+
+        <h2>✍️ Preencha seu recibo</h2>
+
+        <div class="form-group">
+          <label for="recebedor">Recebedor</label>
+          <input id="recebedor"
+            type="text"
+            placeholder="Nome de quem recebeu o pagamento">
+        </div>
+
+        <div class="row">
+
+          <div class="form-group">
+            <label for="cpfRecebedor">CPF/CNPJ do recebedor</label>
+            <input id="cpfRecebedor"
+              type="text"
+              placeholder="000.000.000-00">
+          </div>
+
+          <div class="form-group">
+            <label for="pagador">Pagador</label>
+            <input id="pagador"
+              type="text"
+              placeholder="Nome de quem realizou o pagamento">
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="form-group">
+            <label for="cpfPagador">CPF/CNPJ do pagador</label>
+            <input id="cpfPagador"
+              type="text"
+              placeholder="000.000.000-00">
+          </div>
+
+          <div class="form-group">
+            <label for="valor">Valor (R$)</label>
+            <input id="valor"
+              type="number"
+              step="0.01"
+              min="0"
+              placeholder="0,00">
+          </div>
+
+        </div>
+
+        <div class="form-group">
+          <label for="descricao">Referente a</label>
+
+          <textarea id="descricao"
+            placeholder="Ex.: pagamento referente ao aluguel do mês de agosto de 2026."></textarea>
+        </div>
+
+        <div class="row">
+
+          <div class="form-group">
+            <label for="cidade">Cidade</label>
+
+            <input id="cidade"
+              type="text"
+              placeholder="Sua cidade">
+          </div>
+
+          <div class="form-group">
+            <label for="data">Data</label>
+
+            <input id="data"
+              type="date">
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <label for="numero">
+            Número do recibo
+          </label>
+
+          <input id="numero"
+            type="text"
+            placeholder="Ex.: 001">
+        </div>
+
+        <div class="buttons">
+
+          <button
+            class="btn-primary"
+            onclick="gerarRecibo()">
+            🧾 Atualizar recibo
+          </button>
+
+          <button
+            class="btn-secondary"
+            onclick="limparFormulario()">
+            Limpar
+          </button>
+
+        </div>
+
+      </section>
+
+
+      <!-- =========================
+           PRÉ-VISUALIZAÇÃO
+      ========================= -->
+
+      <section class="card preview-card">
+
+        <h2>👁️ Pré-visualização</h2>
+
+        <div class="receipt" id="receipt">
+
+          <div class="receipt-header">
+
+            <h2>RECIBO DE PAGAMENTO</h2>
+
+            <div class="receipt-number">
+              Nº <span id="previewNumero">001</span>
+            </div>
+
+          </div>
+
+          <div class="receipt-text">
+
+            Recebi de
+            <strong id="previewPagador">
+              [Nome do pagador]
+            </strong>
+
+            <span id="previewCpfPagador"></span>,
+
+            a importância de
+
+            <strong id="previewValorExtenso">
+              [valor por extenso]
+            </strong>,
+
+            referente a:
+
+            <strong id="previewDescricao">
+              [descrição do pagamento]
+            </strong>.
+
+          </div>
+
+          <div class="receipt-value">
+
+            Valor:
+
+            <span id="previewValor">
+              R$ 0,00
+            </span>
+
+          </div>
+
+          <div class="receipt-text">
+
+            Recebedor:
+
+            <strong id="previewRecebedor">
+              [Nome do recebedor]
+            </strong>
+
+            <br>
+
+            CPF/CNPJ:
+
+            <span id="previewCpfRecebedor">
+              —
+            </span>
+
+          </div>
+
+          <div class="signature">
+
+            <div class="signature-line">
+
+              <strong id="previewAssinatura">
+                [Nome do recebedor]
+              </strong>
+
+              <br>
+
+              Recebedor
+
+            </div>
+
+          </div>
+
+          <div class="receipt-footer">
+
+            <span id="previewCidade">
+              [Cidade]
+            </span>,
+
+            <span id="previewData">
+              [Data]
+            </span>
+
+            <br><br>
+
+            Documento gerado gratuitamente pelo
+            Criador de Recibo Online — USC Apps.
+
+          </div>
+
+        </div>
+
+        <div class="buttons">
+
+          <button
+            class="btn-primary"
+            onclick="window.print()">
+            🖨️ Salvar / Imprimir PDF
+          </button>
+
+        </div>
+
+      </section>
+
+    </div>
+
+
+    <!-- =========================
+         DIVULGAÇÃO DO APP
+    ========================= -->
+
+    <section class="app-section">
+
+      <img
+        class="app-icon"
+        src="https://play-lh.googleusercontent.com/Ki0OaYHMw67Yw1ETHV2eyKZAST7JMVjCIrNGzmcadwHEkhq3BU_CYtt1IC9ZqKcE7iA=w240-h480-rw"
+        alt="Ícone do Recibo para Clientes">
+
+      <div class="app-info">
+
+        <h2>📱 Prefere usar no celular?</h2>
+
+        <p>
+          Baixe o <strong>Recibo para Clientes</strong>
+          e crie seus recibos diretamente pelo celular.
+        </p>
+
+      </div>
+
+      <a
+        class="download-button"
+        href="https://play.google.com/store/apps/details?id=com.uscapps.recibos"
+        target="_blank"
+        rel="noopener">
         Baixar o App
       </a>
-    </div>
-  </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       RODAPÉ
+  ========================= -->
 
   <footer>
 
-    <!-- Banner no rodapé -->
+    © 2026 USC Apps. Todos os direitos reservados.
 
-    <div class="footer-banner">
-      <img
-        src="https://play-lh.googleusercontent.com/Ki0OaYHMw67Yw1ETHV2eyKZAST7JMVjCIrNGzmcadwHEkhq3BU_CYtt1IC9ZqKcE7iA=w240-h480-rw"
-        alt="Ícone do App">
-      <div class="footer-content">
-        <h3>Recibo para Clientes</h3>
-        <p>Gere recibos profissionais com facilidade. Baixe agora!</p>
-      </div>
-      <a href="intent://play.google.com/store/apps/details?id=com.uscapps.recibos&pcampaignid=web_redirect#Intent;scheme=https;package=com.android.vending;action=android.intent.action.VIEW;end;"
-        class="download-button">Baixar</a>
-    </div>
-    © 2024 USC Apps. Todos os direitos reservados. <br>
-    Crie recibos em PDF rapidamente com nosso criador de recibos online.
+    <br><br>
+
+    Crie recibos profissionais online de forma rápida e gratuita.
+
   </footer>
+
+
+  <!-- =========================
+       BANNER FIXO DO APP
+  ========================= -->
+
+  <div class="fixed-app">
+
+    <img
+      src="https://play-lh.googleusercontent.com/Ki0OaYHMw67Yw1ETHV2eyKZAST7JMVjCIrNGzmcadwHEkhq3BU_CYtt1IC9ZqKcE7iA=w240-h480-rw"
+      alt="Recibo para Clientes">
+
+    <div class="fixed-info">
+
+      <strong>Recibo para Clientes</strong>
+
+      <span>
+        Crie recibos diretamente no celular.
+      </span>
+
+    </div>
+
+    <a
+      class="fixed-download"
+      href="https://play.google.com/store/apps/details?id=com.uscapps.recibos"
+      target="_blank"
+      rel="noopener">
+      📲 Baixar
+    </a>
+
+  </div>
+
+
+  <script>
+
+    /* ==========================================
+       ELEMENTOS
+    ========================================== */
+
+    const campos = [
+      "recebedor",
+      "cpfRecebedor",
+      "pagador",
+      "cpfPagador",
+      "valor",
+      "descricao",
+      "cidade",
+      "data",
+      "numero"
+    ];
+
+
+    /* ==========================================
+       DATA ATUAL
+    ========================================== */
+
+    const hoje = new Date();
+
+    document.getElementById("data").value =
+      hoje.toISOString().split("T")[0];
+
+
+    /* ==========================================
+       FORMATAÇÃO DE DATA
+    ========================================== */
+
+    function formatarData(data) {
+
+      if (!data) return "[Data]";
+
+      const partes = data.split("-");
+
+      return `${partes[2]}/${partes[1]}/${partes[0]}`;
+    }
+
+
+    /* ==========================================
+       FORMATAÇÃO DE MOEDA
+    ========================================== */
+
+    function formatarMoeda(valor) {
+
+      const numero = Number(valor || 0);
+
+      return numero.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+      });
+    }
+
+
+    /* ==========================================
+       VALOR POR EXTENSO
+    ========================================== */
+
+    function numeroPorExtenso(numero) {
+
+      numero = Number(numero);
+
+      if (!numero || numero <= 0) {
+        return "[valor por extenso]";
+      }
+
+      const unidades = [
+        "",
+        "um",
+        "dois",
+        "três",
+        "quatro",
+        "cinco",
+        "seis",
+        "sete",
+        "oito",
+        "nove"
+      ];
+
+      const especiais = [
+        "dez",
+        "onze",
+        "doze",
+        "treze",
+        "quatorze",
+        "quinze",
+        "dezesseis",
+        "dezessete",
+        "dezoito",
+        "dezenove"
+      ];
+
+      const dezenas = [
+        "",
+        "",
+        "vinte",
+        "trinta",
+        "quarenta",
+        "cinquenta",
+        "sessenta",
+        "setenta",
+        "oitenta",
+        "noventa"
+      ];
+
+      const centenas = [
+        "",
+        "cento",
+        "duzentos",
+        "trezentos",
+        "quatrocentos",
+        "quinhentos",
+        "seiscentos",
+        "setecentos",
+        "oitocentos",
+        "novecentos"
+      ];
+
+
+      function ate999(n) {
+
+        if (n === 0) return "";
+
+        if (n === 100) return "cem";
+
+        let resultado = "";
+
+        const c = Math.floor(n / 100);
+        const resto = n % 100;
+
+        if (c) resultado += centenas[c];
+
+        if (resto) {
+
+          if (resultado) resultado += " e ";
+
+          if (resto < 10) {
+
+            resultado += unidades[resto];
+
+          } else if (resto < 20) {
+
+            resultado += especiais[resto - 10];
+
+          } else {
+
+            const d = Math.floor(resto / 10);
+            const u = resto % 10;
+
+            resultado += dezenas[d];
+
+            if (u) {
+              resultado += " e " + unidades[u];
+            }
+
+          }
+        }
+
+        return resultado;
+      }
+
+
+      const reais = Math.floor(numero);
+
+      const centavos =
+        Math.round((numero - reais) * 100);
+
+
+      let texto = "";
+
+      if (reais >= 1000000) {
+
+        const milhoes = Math.floor(reais / 1000000);
+        const resto = reais % 1000000;
+
+        texto += ate999(milhoes);
+        texto += milhoes === 1 ? " milhão" : " milhões";
+
+        if (resto) {
+          texto += " e " + ate999(resto);
+        }
+
+      } else if (reais >= 1000) {
+
+        const milhares = Math.floor(reais / 1000);
+        const resto = reais % 1000;
+
+        if (milhares === 1) {
+          texto += "mil";
+        } else {
+          texto += ate999(milhares) + " mil";
+        }
+
+        if (resto) {
+          texto += " e " + ate999(resto);
+        }
+
+      } else {
+
+        texto = ate999(reais);
+      }
+
+
+      if (reais === 1) {
+        texto += " real";
+      } else if (reais > 0) {
+        texto += " reais";
+      }
+
+
+      if (centavos > 0) {
+
+        if (texto) texto += " e ";
+
+        texto += ate999(centavos);
+
+        texto += centavos === 1
+          ? " centavo"
+          : " centavos";
+      }
+
+
+      return texto.charAt(0).toUpperCase() + texto.slice(1);
+    }
+
+
+    /* ==========================================
+       GERAR RECIBO
+    ========================================== */
+
+    function gerarRecibo() {
+
+      const recebedor =
+        document.getElementById("recebedor").value.trim();
+
+      const cpfRecebedor =
+        document.getElementById("cpfRecebedor").value.trim();
+
+      const pagador =
+        document.getElementById("pagador").value.trim();
+
+      const cpfPagador =
+        document.getElementById("cpfPagador").value.trim();
+
+      const valor =
+        document.getElementById("valor").value;
+
+      const descricao =
+        document.getElementById("descricao").value.trim();
+
+      const cidade =
+        document.getElementById("cidade").value.trim();
+
+      const data =
+        document.getElementById("data").value;
+
+      const numero =
+        document.getElementById("numero").value.trim();
+
+
+      document.getElementById("previewRecebedor").textContent =
+        recebedor || "[Nome do recebedor]";
+
+      document.getElementById("previewAssinatura").textContent =
+        recebedor || "[Nome do recebedor]";
+
+      document.getElementById("previewCpfRecebedor").textContent =
+        cpfRecebedor || "—";
+
+      document.getElementById("previewPagador").textContent =
+        pagador || "[Nome do pagador]";
+
+      document.getElementById("previewCpfPagador").textContent =
+        cpfPagador ? ` — CPF/CNPJ: ${cpfPagador}` : "";
+
+      document.getElementById("previewValor").textContent =
+        formatarMoeda(valor);
+
+      document.getElementById("previewValorExtenso").textContent =
+        numeroPorExtenso(valor);
+
+      document.getElementById("previewDescricao").textContent =
+        descricao || "[descrição do pagamento]";
+
+      document.getElementById("previewCidade").textContent =
+        cidade || "[Cidade]";
+
+      document.getElementById("previewData").textContent =
+        formatarData(data);
+
+      document.getElementById("previewNumero").textContent =
+        numero || "001";
+
+
+      /* Salvar automaticamente */
+
+      campos.forEach(id => {
+
+        localStorage.setItem(
+          "recibo_" + id,
+          document.getElementById(id).value
+        );
+
+      });
+
+    }
+
+
+    /* ==========================================
+       CARREGAR DADOS SALVOS
+    ========================================== */
+
+    function carregarDados() {
+
+      campos.forEach(id => {
+
+        const valorSalvo =
+          localStorage.getItem("recibo_" + id);
+
+        if (valorSalvo !== null) {
+
+          document.getElementById(id).value =
+            valorSalvo;
+
+        }
+
+      });
+
+      gerarRecibo();
+    }
+
+
+    /* ==========================================
+       LIMPAR
+    ========================================== */
+
+    function limparFormulario() {
+
+      if (!confirm("Deseja limpar todos os dados do recibo?")) {
+        return;
+      }
+
+      campos.forEach(id => {
+
+        localStorage.removeItem("recibo_" + id);
+
+        document.getElementById(id).value = "";
+
+      });
+
+      document.getElementById("data").value =
+        hoje.toISOString().split("T")[0];
+
+      document.getElementById("numero").value = "001";
+
+      gerarRecibo();
+    }
+
+
+    /* ==========================================
+       ATUALIZAÇÃO AUTOMÁTICA
+    ========================================== */
+
+    campos.forEach(id => {
+
+      document.getElementById(id)
+        .addEventListener("input", gerarRecibo);
+
+    });
+
+
+    /* ==========================================
+       INICIAR
+    ========================================== */
+
+    carregarDados();
+
+  </script>
 
 </body>
 
