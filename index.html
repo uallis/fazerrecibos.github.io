@@ -15,6 +15,69 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
 <style>
+/* SEO CONTENT STYLES */
+.seo-content {
+    max-width: 800px;
+    margin: 60px auto 40px;
+    padding: 0 20px;
+    color: var(--text);
+    line-height: 1.8;
+}
+.seo-content h2 {
+    font-size: 1.6rem;
+    margin-top: 35px;
+    margin-bottom: 15px;
+    color: var(--blue2);
+}
+.seo-content h3 {
+    font-size: 1.25rem;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+.seo-content p, .seo-content li {
+    font-size: 1.05rem;
+    margin-bottom: 15px;
+    color: #334155;
+}
+.seo-content ul {
+    padding-left: 25px;
+    margin-bottom: 20px;
+}
+.seo-content strong {
+    color: var(--blue);
+}
+
+/* FAQ ACCORDION */
+.faq-item {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    background: #fff;
+}
+.faq-item summary {
+    padding: 18px 20px;
+    font-weight: bold;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.05rem;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after { content: '+'; font-size: 1.4rem; color: var(--blue); }
+.faq-item[open] summary::after { content: '−'; }
+.faq-item[open] summary { background: #f8fafc; }
+.faq-answer {
+    padding: 15px 20px 20px;
+    font-size: 0.98rem;
+    color: #475569;
+    line-height: 1.7;
+}
+
+
+
 *{box-sizing:border-box;}
 :root{
     --blue:#0757b8; --blue2:#003b82; --green:#16a34a; --green2:#15803d;
