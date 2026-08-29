@@ -103,7 +103,7 @@ button{border:0;border-radius:10px;padding:12px 16px;font-weight:bold;cursor:poi
 .signature-buttons{margin-top:8px;}
 
 /* =========================================
-   ESTILO DO RECIBO PROFISSIONAL 
+   ESTILO DO RECIBO (INSPIRADO NA IMAGEM)
    ========================================= */
 .preview-wrapper{overflow:auto;background:#e2e8f0;padding:20px;border-radius:12px;}
 
@@ -112,139 +112,136 @@ button{border:0;border-radius:10px;padding:12px 16px;font-weight:bold;cursor:poi
     color:#000;
     width:100%;
     min-height:700px;
-    padding:0;
-    border:1px solid #ccc;
-    font-family:'Times New Roman', Times, serif;
-    position:relative;
-    display:flex;
-    flex-direction:column;
-}
-
-.receipt-inner{
-    border:2px solid #000;
-    margin:8px;
-    padding:40px 50px;
-    flex:1;
+    padding:50px 60px;
+    font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;
     display:flex;
     flex-direction:column;
 }
 
 .receipt-header{
-    text-align:center;
-    border-bottom:2px solid #000;
-    padding-bottom:20px;
+    display:flex;
+    align-items:center;
+    gap:15px;
     margin-bottom:30px;
 }
 
 .receipt-logo{
     display:none;
-    max-width:120px;
-    max-height:80px;
+    width:50px;
+    height:50px;
     object-fit:contain;
-    margin-bottom:15px;
+    border-radius:50%;
+    background:#f0f0f0;
 }
 
 .receipt-header h2{
     margin:0;
-    font-size:2rem;
+    font-size:2.2rem;
     text-transform:uppercase;
-    letter-spacing:2px;
-    font-weight:900;
+    letter-spacing:1px;
+    font-weight:400;
+    color:#000;
 }
 
-.receipt-number{
-    margin-top:10px;
-    font-size:1rem;
-    font-weight:bold;
-    font-family:Arial, sans-serif;
+.receipt-meta {
+    margin-bottom: 25px;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    border-bottom: 1px solid #000;
+    padding-bottom: 15px;
 }
 
-.receipt-body{
-    display:flex;
-    gap:30px;
-    margin-bottom:30px;
+.receipt-meta strong {
+    font-weight: bold;
 }
 
-.receipt-content{
-    flex:1;
-    font-size:1.1rem;
-    line-height:2;
+.receipt-intro {
+    margin-bottom: 20px;
+    font-size: 0.95rem;
 }
 
-.receipt-value-sidebar{
-    width:160px;
-    background:#f8fafc;
-    border:1px solid #000;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    padding:20px 10px;
+/* TABELA DE ITENS */
+.receipt-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 25px;
+    font-size: 0.95rem;
 }
 
-.receipt-value-sidebar .label{
-    font-size:0.8rem;
-    text-transform:uppercase;
-    font-weight:bold;
-    margin-bottom:10px;
-    font-family:Arial, sans-serif;
+.receipt-table th {
+    background-color: #f2f2f2;
+    padding: 12px 10px;
+    text-align: left;
+    font-weight: bold;
+    border-bottom: 1px solid #ddd;
 }
 
-.receipt-value-sidebar .amount{
-    font-size:1.4rem;
-    font-weight:bold;
-    word-break:break-all;
+.receipt-table td {
+    padding: 12px 10px;
+    border-bottom: 1px solid #eee;
 }
 
-.pix-box{
-    display:none;
-    margin-top:25px;
-    border:1px dashed #555;
-    padding:15px;
-    background:#fafafa;
+.receipt-table th:nth-child(2), .receipt-table td:nth-child(2),
+.receipt-table th:nth-child(3), .receipt-table td:nth-child(3),
+.receipt-table th:nth-child(4), .receipt-table td:nth-child(4) {
+    text-align: right;
 }
 
-.pix-content{
-    display:flex;
-    gap:15px;
-    align-items:center;
-    font-family:Arial, sans-serif;
-    font-size:0.9rem;
+/* TOTAIS */
+.receipt-totals {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 40px;
 }
 
-#qrcode img{width:100px;height:100px;}
-
-.signature-area{
-    margin-top:auto;
-    padding-top:60px;
-    text-align:center;
+.totals-box {
+    width: 250px;
+    font-size: 0.95rem;
+    line-height: 1.8;
 }
 
-.signature-image{
-    display:none;
-    max-width:220px;
-    max-height:90px;
-    margin:0 auto 5px;
+.totals-row {
+    display: flex;
+    justify-content: space-between;
 }
 
-.signature-line{
-    width:60%;
-    margin:auto;
-    border-top:1px solid #000;
-    padding-top:8px;
-    font-size:0.9rem;
-    line-height:1.4;
+.totals-row.final {
+    font-weight: bold;
+    font-size: 1.05rem;
+    margin-top: 5px;
 }
 
-.receipt-footer{
-    margin-top:30px;
-    text-align:center;
-    color:#555;
-    font-size:0.7rem;
-    font-family:Arial, sans-serif;
-    border-top:1px solid #eee;
-    padding-top:15px;
+/* ASSINATURA E RODAPÉ */
+.signature-area {
+    margin-top: auto;
+    text-align: center;
+    padding-top: 40px;
+}
+
+.signature-image {
+    display: none;
+    max-width: 180px;
+    max-height: 70px;
+    margin: 0 auto 10px;
+}
+
+.signature-line {
+    width: 300px;
+    margin: 0 auto 10px;
+    border-top: 1px solid #000;
+}
+
+.receipt-footer-info {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #000;
+}
+
+.receipt-footer-url {
+    margin-top: 30px;
+    text-align: center;
+    color: #888;
+    font-size: 0.75rem;
 }
 
 /* =========================================
@@ -333,9 +330,8 @@ footer{text-align:center;padding:35px 20px 110px;font-size:.9rem;color:var(--mut
     .grid{grid-template-columns:1fr;}
     .app-banner{flex-direction:column;text-align:center;}
     .download{width:100%;text-align:center;}
-    .receipt-body{flex-direction:column-reverse;}
-    .receipt-value-sidebar{width:100%;flex-direction:row;justify-content:space-between;padding:15px 25px;}
-    .receipt-inner{padding:25px;}
+    .receipt{padding:30px 20px;}
+    .receipt-table th:nth-child(2), .receipt-table td:nth-child(2) { display: none; } /* Esconde quantidade no mobile se apertar */
 }
 @media(max-width:600px){
     header{padding-top:80px;}
@@ -344,6 +340,7 @@ footer{text-align:center;padding:35px 20px 110px;font-size:.9rem;color:var(--mut
     .fixed-info span{display:none;}
     .fixed-download{padding:9px 13px;font-size:.85rem;}
     .history-item{flex-direction:column;align-items:flex-start;}
+    .totals-box { width: 100%; }
 }
 
 /* IMPRESSÃO */
@@ -355,7 +352,6 @@ footer{text-align:center;padding:35px 20px 110px;font-size:.9rem;color:var(--mut
     .card{border:0;box-shadow:none;padding:0;}
     .receipt{border:0;}
     .preview-wrapper{background:#fff;padding:0;}
-    .receipt-inner{margin:0;border:2px solid #000;}
 }
 </style>
 </head>
@@ -387,8 +383,8 @@ footer{text-align:center;padding:35px 20px 110px;font-size:.9rem;color:var(--mut
                 <div class="form-group">
                     <label>Modelo</label>
                     <select id="modelo">
+                        <option value="moderno">Moderno Minimalista</option>
                         <option value="classico">Clássico Profissional</option>
-                        <option value="moderno">Moderno</option>
                         <option value="simples">Simples</option>
                     </select>
                 </div>
@@ -411,7 +407,7 @@ footer{text-align:center;padding:35px 20px 110px;font-size:.9rem;color:var(--mut
                     <div class="form-group"><label>Data</label><input id="data" type="date"></div>
                 </div>
 
-                <div class="form-group"><label>Referente a</label><textarea id="descricao" placeholder="Ex.: pagamento referente ao aluguel do mês de agosto."></textarea></div>
+                <div class="form-group"><label>Referente a (Descrição do Serviço)</label><textarea id="descricao" placeholder="Ex.: Confecção de tapetes personalizados"></textarea></div>
                 <div class="form-group"><label>Cidade</label><input id="cidade" placeholder="Cidade"></div>
                 <div class="form-group"><label>Chave PIX</label><input id="pix" placeholder="CPF, telefone, e-mail ou chave aleatória"></div>
 
@@ -438,50 +434,67 @@ footer{text-align:center;padding:35px 20px 110px;font-size:.9rem;color:var(--mut
                 <h2>👁️ Pré-visualização</h2>
                 <div class="preview-wrapper">
                     <div id="receipt" class="receipt">
-                        <div class="receipt-inner">
-                            <div class="receipt-header">
-                                <img id="previewLogo" class="receipt-logo">
-                                <h2>RECIBO DE PAGAMENTO</h2>
-                                <div class="receipt-number">Nº <span id="previewNumero">001</span></div>
-                            </div>
+                        
+                        <div class="receipt-header">
+                            <img id="previewLogo" class="receipt-logo">
+                            <h2>RECIBO</h2>
+                        </div>
 
-                            <div class="receipt-body">
-                                <div class="receipt-content">
-                                    Recebi de <strong id="previewPagador">[Nome do pagador]</strong> <span id="previewCpfPagador"></span>, 
-                                    a importância de <strong id="previewValorExtenso">[valor por extenso]</strong>, 
-                                    referente a: <strong id="previewDescricao">[descrição]</strong>.
-                                    <br><br>
-                                    <strong>Recebedor:</strong> <span id="previewRecebedor">[Nome do recebedor]</span><br>
-                                    <strong>CPF/CNPJ:</strong> <span id="previewCpfRecebedor">—</span>
+                        <div class="receipt-meta">
+                            <strong>Recibo nº:</strong> <span id="previewNumero">001</span><br>
+                            <strong>Cliente:</strong> <span id="previewPagador">[Nome do pagador]</span> <span id="previewCpfPagador"></span><br>
+                            <strong>Data:</strong> <span id="previewData">[Data]</span>
+                        </div>
+
+                        <div class="receipt-intro">
+                            Recebi(emos) a importância abaixo referente ao pagamento descrito.
+                        </div>
+
+                        <table class="receipt-table">
+                            <thead>
+                                <tr>
+                                    <th>Descrição</th>
+                                    <th>Qtd</th>
+                                    <th>Valor unit.</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td id="previewDescricao">[descrição]</td>
+                                    <td>1</td>
+                                    <td id="previewValorUnit">R$ 0,00</td>
+                                    <td id="previewValorTotal">R$ 0,00</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="receipt-totals">
+                            <div class="totals-box">
+                                <div class="totals-row">
+                                    <span>Valor total:</span>
+                                    <span id="previewValor">R$ 0,00</span>
                                 </div>
-
-                                <div class="receipt-value-sidebar">
-                                    <div class="label">Valor Pago</div>
-                                    <div class="amount" id="previewValor">R$ 0,00</div>
+                                <div class="totals-row final">
+                                    <span>Valor final:</span>
+                                    <span id="previewValorFinal">R$ 0,00</span>
                                 </div>
-                            </div>
-
-                            <div id="previewPixBox" class="pix-box">
-                                <div class="pix-content">
-                                    <div id="qrcode"></div>
-                                    <div><strong>Pagamento via PIX</strong><br><br>Chave: <span id="previewPix"></span></div>
-                                </div>
-                            </div>
-
-                            <div class="signature-area">
-                                <img id="previewSignature" class="signature-image">
-                                <div class="signature-line">
-                                    <strong id="previewAssinatura">[Nome do recebedor]</strong><br>
-                                    Recebedor / Responsável
-                                </div>
-                            </div>
-
-                            <div class="receipt-footer">
-                                <span id="previewCidade">[Cidade]</span>, <span id="previewData">[Data]</span>
-                                <br>
-                                www.fazerrecibos.com.br
                             </div>
                         </div>
+
+                        <div class="signature-area">
+                            <img id="previewSignature" class="signature-image">
+                            <div class="signature-line"></div>
+                            <div class="receipt-footer-info">
+                                <span id="previewRecebedor">[Nome do recebedor]</span> 
+                                <span id="previewPixInfo"></span>
+                            </div>
+                        </div>
+
+                        <div class="receipt-footer-url">
+                            www.fazerrecibos.com.br
+                        </div>
+
                     </div>
                 </div>
 
@@ -562,7 +575,7 @@ footer{text-align:center;padding:35px 20px 110px;font-size:.9rem;color:var(--mut
     <p>Nossa ferramenta inclui automaticamente todos esses campos no modelo profissional, assegurando conformidade com as práticas comerciais brasileiras.</p>
 
     <h3>Recibo com PIX: Como funciona?</h3>
-    <p>Ao adicionar uma chave PIX no formulário, o sistema gera automaticamente um <strong>QR Code funcional</strong> no recibo. Isso permite que o pagador escaneie e comprove o pagamento instantaneamente, unindo a tradição do documento escrito com a agilidade do Pix.</p>
+    <p>Ao adicionar uma chave PIX no formulário, o sistema inclui automaticamente as informações de pagamento no rodapé do recibo, facilitando a conferência e comprovação instantânea.</p>
 
     <h2>Perguntas Frequentes sobre Recibos</h2>
     
@@ -683,65 +696,6 @@ function moeda(valor){
     return Number(valor || 0).toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
 }
 
-function numeroExtenso(numero){
-    numero = Number(numero);
-    if(!numero) return "[valor por extenso]";
-    const unidades=["","um","dois","três","quatro","cinco","seis","sete","oito","nove"];
-    const especiais=["dez","onze","doze","treze","quatorze","quinze","dezesseis","dezessete","dezoito","dezenove"];
-    const dezenas=["","","vinte","trinta","quarenta","cinquenta","sessenta","setenta","oitenta","noventa"];
-    const centenas=["","cento","duzentos","trezentos","quatrocentos","quinhentos","seiscentos","setecentos","oitocentos","novecentos"];
-    
-    function ate999(n){
-        if(n===0) return "";
-        if(n===100) return "cem";
-        let texto="";
-        let c=Math.floor(n/100);
-        let resto=n%100;
-        if(c) texto+=centenas[c];
-        if(resto){
-            if(texto) texto+=" e ";
-            if(resto<10) texto+=unidades[resto];
-            else if(resto<20) texto+=especiais[resto-10];
-            else{
-                let d=Math.floor(resto/10);
-                let u=resto%10;
-                texto+=dezenas[d];
-                if(u) texto+=" e "+unidades[u];
-            }
-        }
-        return texto;
-    }
-    
-    const reais=Math.floor(numero);
-    const centavos=Math.round((numero-reais)*100);
-    let texto="";
-    
-    if(reais>=1000000){
-        let milhoes=Math.floor(reais/1000000);
-        let resto=reais%1000000;
-        texto+=ate999(milhoes)+(milhoes===1?" milhão":" milhões");
-        if(resto) texto+=" e "+ate999(resto);
-    }else if(reais>=1000){
-        let milhares=Math.floor(reais/1000);
-        let resto=reais%1000;
-        if(milhares===1) texto+="mil";
-        else texto+=ate999(milhares)+" mil";
-        if(resto) texto+=" e "+ate999(resto);
-    }else{
-        texto=ate999(reais);
-    }
-    
-    if(reais===1) texto+=" real";
-    else if(reais>0) texto+=" reais";
-    
-    if(centavos>0){
-        if(texto) texto+=" e ";
-        texto+=ate999(centavos)+(centavos===1?" centavo":" centavos");
-    }
-    
-    return texto.charAt(0).toUpperCase()+texto.slice(1);
-}
-
 function dataBR(data){
     if(!data) return "[Data]";
     const p=data.split("-");
@@ -782,26 +736,25 @@ function gerarRecibo(){
     const pix=$("pix").value.trim();
 
     $("previewRecebedor").textContent=recebedor||"[Nome do recebedor]";
-    $("previewAssinatura").textContent=recebedor||"[Nome do recebedor]";
-    $("previewCpfRecebedor").textContent=cpfRecebedor||"—";
+    $("previewCpfPagador").textContent=cpfPagador?` (${cpfPagador})`:"";
     $("previewPagador").textContent=pagador||"[Nome do pagador]";
-    $("previewCpfPagador").textContent=cpfPagador?` — CPF/CNPJ: ${cpfPagador}`:"";
-    $("previewValor").textContent=moeda(valor);
-    $("previewValorExtenso").textContent=numeroExtenso(valor);
+    
+    // Formatação de valores para a tabela
+    const valorFormatado = moeda(valor);
+    $("previewValor").textContent=valorFormatado;
+    $("previewValorUnit").textContent=valorFormatado;
+    $("previewValorTotal").textContent=valorFormatado;
+    $("previewValorFinal").textContent=valorFormatado; // Sem desconto por enquanto, mantém igual
+    
     $("previewDescricao").textContent=descricao||"[descrição]";
-    $("previewCidade").textContent=cidade||"[Cidade]";
     $("previewData").textContent=dataBR(data);
     $("previewNumero").textContent=numero||"001";
 
-    const pixBox=$("previewPixBox");
+    // Info do PIX no rodapé
     if(pix){
-        pixBox.style.display="block";
-        $("previewPix").textContent=pix;
-        $("qrcode").innerHTML="";
-        new QRCode($("qrcode"),{text:pix,width:100,height:100});
-    }else{
-        pixBox.style.display="none";
-        $("qrcode").innerHTML="";
+        $("previewPixInfo").textContent = `PIX ${pix}`;
+    } else {
+        $("previewPixInfo").textContent = "";
     }
 
     const campos=["modelo","recebedor","cpfRecebedor","numero","pagador","cpfPagador","valor","data","descricao","cidade","pix"];
