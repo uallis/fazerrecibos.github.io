@@ -2,1099 +2,633 @@
 <html lang="pt-BR">
 
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta charset="UTF-8">
+<meta name="description"
+content="Crie recibos profissionais online grátis. Gere, assine, adicione PIX, logo e baixe seu recibo em PDF.">
 
-  <meta name="viewport"
-    content="width=device-width, initial-scale=1.0">
+<meta name="author" content="USC Apps">
 
-  <meta name="description"
-    content="Crie recibos profissionais online grátis. Gere, assine e baixe seu recibo em PDF diretamente pelo celular.">
+<title>Recibo Fácil — Criador de Recibos Online</title>
 
-  <meta name="keywords"
-    content="recibo online, recibo grátis, gerador de recibo, recibo PDF, recibo de pagamento, recibo aluguel, recibo prestação de serviço">
+<link rel="icon"
+href="https://play-lh.googleusercontent.com/Ki0OaYHMw67Yw1ETHV2eyKZAST7JMVjCIrNGzmcadwHEkhq3BU_CYtt1IC9ZqKcE7iA=w480-h960-rw">
 
-  <meta name="author"
-    content="USC Apps">
-
-  <title>
-    Criador de Recibo Online Grátis | USC Apps
-  </title>
-
-
-  <!-- ÍCONE -->
-
-  <link rel="icon"
-    href="https://play-lh.googleusercontent.com/Ki0OaYHMw67Yw1ETHV2eyKZAST7JMVjCIrNGzmcadwHEkhq3BU_CYtt1IC9ZqKcE7iA=w480-h960-rw"
-    type="image/png">
-
-
-  <!-- JS PDF -->
-
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js">
-  </script>
-
-
-  <!-- HTML2CANVAS -->
-
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js">
-  </script>
-
-
-  <!-- GOOGLE TAG -->
-
-  <script async
-    src="https://www.googletagmanager.com/gtag/js?id=AW-318770758">
-  </script>
-
-  <script>
-
-    window.dataLayer =
-      window.dataLayer || [];
-
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-
-    gtag('js', new Date());
-
-    gtag('config', 'AW-318770758');
-
-  </script>
-
+<!-- Bibliotecas para PDF e QR Code -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
 <style>
 
-/* =====================================================
-   RESET
-===================================================== */
-
-* {
-  box-sizing: border-box;
+*{
+box-sizing:border-box;
 }
 
-:root {
-
-  --azul: #0757b8;
-
-  --azul-escuro: #033b82;
-
-  --azul-claro: #eaf3ff;
-
-  --verde: #16a34a;
-
-  --verde-escuro: #15803d;
-
-  --cinza: #64748b;
-
-  --fundo: #f4f7fb;
-
-  --borda: #dce3ed;
-
-  --texto: #172033;
-
-  --branco: #ffffff;
-
+:root{
+--blue:#0757b8;
+--blue2:#003b82;
+--green:#16a34a;
+--green2:#15803d;
+--bg:#f3f6fb;
+--text:#172033;
+--muted:#64748b;
+--border:#dce4ef;
+--red:#dc2626;
 }
 
-
-body {
-
-  margin: 0;
-
-  font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
-
-  background:
-    var(--fundo);
-
-  color:
-    var(--texto);
-
+body{
+margin:0;
+font-family:Arial,Helvetica,sans-serif;
+background:var(--bg);
+color:var(--text);
 }
 
+/* ================= HEADER ================= */
 
-/* =====================================================
-   HEADER
-===================================================== */
-
-header {
-
-  background:
-
-    radial-gradient(
-      circle at top right,
-      rgba(255,255,255,.18),
-      transparent 35%
-    ),
-
-    linear-gradient(
-      135deg,
-      #0757b8,
-      #002f6c
-    );
-
-  color: white;
-
-  padding:
-    45px 20px 75px;
-
-  text-align: center;
-
+header{
+position:relative;
+background:
+radial-gradient(circle at top right,rgba(255,255,255,.18),transparent 35%),
+linear-gradient(135deg,var(--blue),var(--blue2));
+color:#fff;
+text-align:center;
+padding:45px 20px 85px;
 }
 
-
-header h1 {
-
-  margin: 0 0 12px;
-
-  font-size:
-    clamp(2rem, 5vw, 3.1rem);
-
+header h1{
+margin:0 0 12px;
+font-size:clamp(2rem,5vw,3.2rem);
 }
 
-
-header p {
-
-  max-width: 760px;
-
-  margin: auto;
-
-  line-height: 1.7;
-
-  color:
-    #e5efff;
-
+header p{
+max-width:760px;
+margin:auto;
+line-height:1.7;
+color:#e5efff;
 }
 
-
-/* =====================================================
-   CONTAINER
-===================================================== */
-
-.container {
-
-  width:
-    min(1150px, calc(100% - 30px));
-
-  margin:
-    -40px auto 120px;
-
+.top-app{
+position:absolute;
+right:20px;
+top:18px;
 }
 
-
-/* =====================================================
-   GRID
-===================================================== */
-
-.grid {
-
-  display: grid;
-
-  grid-template-columns:
-    430px 1fr;
-
-  gap: 25px;
-
+.top-app a{
+display:inline-block;
+background:#22c55e;
+color:#fff;
+text-decoration:none;
+font-weight:bold;
+padding:10px 16px;
+border-radius:25px;
 }
 
+/* ================= CONTAINER ================= */
 
-.card {
-
-  background:
-    white;
-
-  border:
-    1px solid var(--borda);
-
-  border-radius:
-    20px;
-
-  padding:
-    25px;
-
-  box-shadow:
-    0 12px 35px
-    rgba(0,35,90,.09);
-
+.container{
+width:min(1180px,calc(100% - 30px));
+margin:-45px auto 130px;
 }
 
-
-.card h2 {
-
-  margin-top: 0;
-
+.tabs{
+display:flex;
+gap:8px;
+margin-bottom:20px;
+overflow-x:auto;
 }
 
-
-/* =====================================================
-   FORM
-===================================================== */
-
-.form-group {
-
-  margin-bottom:
-    15px;
-
+.tab{
+border:0;
+padding:12px 18px;
+background:#fff;
+border-radius:12px;
+font-weight:bold;
+cursor:pointer;
+white-space:nowrap;
+color:#475569;
 }
 
-
-label {
-
-  display: block;
-
-  font-weight: bold;
-
-  font-size:
-    .88rem;
-
-  margin-bottom:
-    7px;
-
+.tab.active{
+background:var(--blue);
+color:#fff;
 }
 
+.page{
+display:none;
+}
+
+.page.active{
+display:block;
+}
+
+/* ================= GRID ================= */
+
+.grid{
+display:grid;
+grid-template-columns:420px 1fr;
+gap:25px;
+}
+
+.card{
+background:#fff;
+border:1px solid var(--border);
+border-radius:20px;
+padding:25px;
+box-shadow:0 12px 35px rgba(0,35,90,.08);
+margin-bottom:20px;
+}
+
+.card h2{
+margin-top:0;
+}
+
+/* ================= FORM ================= */
+
+.form-group{
+margin-bottom:15px;
+}
+
+label{
+display:block;
+font-weight:bold;
+font-size:.88rem;
+margin-bottom:7px;
+}
 
 input,
 textarea,
-select {
-
-  width: 100%;
-
-  border:
-    1px solid var(--borda);
-
-  border-radius:
-    10px;
-
-  padding:
-    12px;
-
-  font-size:
-    1rem;
-
-  background:
-    white;
-
-  outline: none;
-
+select{
+width:100%;
+padding:12px;
+border:1px solid var(--border);
+border-radius:10px;
+background:#fff;
+font-size:1rem;
+outline:none;
 }
-
 
 input:focus,
 textarea:focus,
-select:focus {
+select:focus{
+border-color:var(--blue);
+box-shadow:0 0 0 3px rgba(7,87,184,.1);
+}
 
-  border-color:
-    var(--azul);
+textarea{
+min-height:85px;
+resize:vertical;
+}
 
-  box-shadow:
-    0 0 0 3px
-    rgba(7,87,184,.10);
+.row{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+}
+
+/* ================= DINHEIRO ================= */
+
+.money-box{
+position:relative;
+}
+
+.money-box span{
+position:absolute;
+left:13px;
+top:50%;
+transform:translateY(-50%);
+font-weight:bold;
+color:#475569;
+pointer-events:none;
+}
+
+.money-input{
+padding-left:42px;
+font-weight:bold;
+font-size:1.15rem;
+}
+
+/* ================= BOTÕES ================= */
+
+.buttons{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+margin-top:20px;
+}
+
+button{
+border:0;
+border-radius:10px;
+padding:12px 16px;
+font-weight:bold;
+cursor:pointer;
+transition:.2s;
+}
+
+.primary{
+background:var(--blue);
+color:#fff;
+flex:1;
+}
+
+.primary:hover{
+background:var(--blue2);
+}
+
+.green{
+background:var(--green);
+color:#fff;
+flex:1;
+}
+
+.green:hover{
+background:var(--green2);
+}
+
+.secondary{
+background:#edf2f7;
+color:#334155;
+}
+
+.danger{
+background:#fee2e2;
+color:#991b1b;
+}
+
+/* ================= LOGO ================= */
+
+.logo-preview{
+display:none;
+width:80px;
+height:80px;
+object-fit:contain;
+border:1px solid var(--border);
+border-radius:10px;
+margin-top:10px;
+}
+
+/* ================= ASSINATURA ================= */
+
+.signature-pad{
+display:block;
+width:100%;
+height:150px;
+background:#fff;
+border:1px solid var(--border);
+border-radius:10px;
+touch-action:none;
+}
+
+.signature-buttons{
+margin-top:8px;
+}
+
+/* ================= RECIBO ================= */
+
+.preview-wrapper{
+overflow:auto;
+}
+
+.receipt{
+background:#fff;
+color:#111;
+width:100%;
+min-height:650px;
+padding:45px;
+border:1px solid #ddd;
+}
+
+.receipt-header{
+text-align:center;
+border-bottom:2px solid #111;
+padding-bottom:20px;
+margin-bottom:25px;
+}
+
+.receipt-logo{
+display:none;
+max-width:100px;
+max-height:75px;
+object-fit:contain;
+margin-bottom:10px;
+}
+
+.receipt-header h2{
+margin:0;
+font-size:1.8rem;
+}
+
+.receipt-number{
+margin-top:8px;
+color:#666;
+font-size:.85rem;
+}
+
+.receipt-text{
+font-size:1rem;
+line-height:1.9;
+}
+
+.value-box{
+background:#f4f4f4;
+border-left:5px solid #111;
+padding:18px;
+margin:25px 0;
+font-size:1.25rem;
+font-weight:bold;
+}
+
+.pix-box{
+display:none;
+margin-top:20px;
+border:1px dashed #888;
+padding:15px;
+}
+
+.pix-content{
+display:flex;
+gap:15px;
+align-items:center;
+}
+
+#qrcode img{
+width:110px;
+height:110px;
+}
+
+.signature-area{
+margin-top:65px;
+text-align:center;
+}
+
+.signature-image{
+display:none;
+max-width:200px;
+max-height:80px;
+margin:0 auto 5px;
+}
+
+.signature-line{
+width:70%;
+margin:auto;
+border-top:1px solid #111;
+padding-top:8px;
+}
+
+.receipt-footer{
+margin-top:35px;
+text-align:center;
+color:#777;
+font-size:.75rem;
+}
+
+/* ================= APP ================= */
+
+.app-banner{
+background:
+radial-gradient(circle at top right,rgba(255,255,255,.18),transparent 35%),
+linear-gradient(135deg,#0757b8,#002f6c);
+color:#fff;
+border-radius:20px;
+padding:25px;
+display:flex;
+align-items:center;
+gap:20px;
+margin-top:25px;
+}
+
+.app-icon{
+width:72px;
+height:72px;
+border-radius:17px;
+object-fit:cover;
+}
+
+.app-info{
+flex:1;
+}
+
+.app-info h2{
+margin:0 0 7px;
+}
+
+.app-info p{
+margin:0;
+color:#dbeafe;
+line-height:1.5;
+}
+
+.download{
+display:inline-block;
+background:#22c55e;
+color:#fff;
+text-decoration:none;
+padding:13px 20px;
+border-radius:25px;
+font-weight:bold;
+white-space:nowrap;
+}
+
+/* ================= HISTÓRICO ================= */
+
+.history-item{
+background:#fff;
+border:1px solid var(--border);
+border-radius:15px;
+padding:16px;
+margin-bottom:10px;
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+.history-info{
+flex:1;
+}
+
+.history-info strong{
+display:block;
+margin-bottom:5px;
+}
+
+.history-info span{
+font-size:.85rem;
+color:var(--muted);
+}
+
+.history-actions{
+display:flex;
+gap:7px;
+}
+
+/* ================= EMPRESA ================= */
+
+.saved{
+display:none;
+background:#dcfce7;
+color:#166534;
+padding:10px;
+border-radius:10px;
+margin-bottom:15px;
+}
+
+/* ================= BANNER FIXO ================= */
+
+.fixed-app{
+position:fixed;
+left:0;
+right:0;
+bottom:0;
+z-index:99999;
+background:rgba(15,23,42,.97);
+backdrop-filter:blur(10px);
+color:#fff;
+padding:9px 15px;
+display:flex;
+align-items:center;
+gap:12px;
+box-shadow:0 -5px 25px rgba(0,0,0,.25);
+}
+
+.fixed-app img{
+width:45px;
+height:45px;
+border-radius:10px;
+}
+
+.fixed-info{
+flex:1;
+}
+
+.fixed-info strong{
+display:block;
+}
+
+.fixed-info span{
+font-size:.78rem;
+color:#cbd5e1;
+}
+
+.fixed-download{
+background:#22c55e;
+color:#fff;
+text-decoration:none;
+padding:10px 17px;
+border-radius:20px;
+font-weight:bold;
+white-space:nowrap;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+text-align:center;
+padding:35px 20px 110px;
+font-size:.9rem;
+color:var(--muted);
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:850px){
+
+.grid{
+grid-template-columns:1fr;
+}
+
+.app-banner{
+flex-direction:column;
+text-align:center;
+}
+
+.download{
+width:100%;
+text-align:center;
+}
 
 }
 
+@media(max-width:600px){
 
-textarea {
+header{
+padding-top:80px;
+}
 
-  min-height:
-    80px;
+.top-app{
+right:10px;
+}
 
-  resize:
-    vertical;
+.top-app a{
+font-size:.8rem;
+padding:8px 11px;
+}
+
+.row{
+grid-template-columns:1fr;
+}
+
+.receipt{
+padding:25px;
+}
+
+.fixed-info span{
+display:none;
+}
+
+.fixed-download{
+padding:9px 13px;
+font-size:.85rem;
+}
+
+.history-item{
+flex-direction:column;
+align-items:flex-start;
+}
 
 }
 
+/* ================= IMPRESSÃO ================= */
 
-.row {
+@media print{
 
-  display:
-    grid;
-
-  grid-template-columns:
-    1fr 1fr;
-
-  gap:
-    10px;
-
+body{
+background:#fff;
 }
 
-
-/* =====================================================
-   BUTTONS
-===================================================== */
-
-.buttons {
-
-  display:
-    flex;
-
-  flex-wrap:
-    wrap;
-
-  gap:
-    10px;
-
-  margin-top:
-    20px;
-
+header,
+.tabs,
+.form-card,
+.app-banner,
+footer,
+.fixed-app,
+.print-buttons{
+display:none!important;
 }
 
-
-button {
-
-  border: 0;
-
-  border-radius:
-    10px;
-
-  padding:
-    13px 16px;
-
-  font-weight:
-    bold;
-
-  cursor:
-    pointer;
-
-  transition:
-    .2s;
-
+.container{
+width:100%;
+margin:0;
 }
 
-
-.primary {
-
-  background:
-    var(--azul);
-
-  color:
-    white;
-
-  flex: 1;
-
+.grid{
+display:block;
 }
 
-
-.primary:hover {
-
-  background:
-    var(--azul-escuro);
-
+.card{
+border:0;
+box-shadow:none;
+padding:0;
 }
 
-
-.secondary {
-
-  background:
-    #edf2f7;
-
-  color:
-    #334155;
-
+.receipt{
+border:0;
 }
-
-
-.green {
-
-  background:
-    var(--verde);
-
-  color:
-    white;
-
-  flex: 1;
-
-}
-
-
-.green:hover {
-
-  background:
-    var(--verde-escuro);
-
-}
-
-
-/* =====================================================
-   LOGO
-===================================================== */
-
-.logo-preview {
-
-  width:
-    75px;
-
-  height:
-    75px;
-
-  object-fit:
-    contain;
-
-  border:
-    1px solid var(--borda);
-
-  border-radius:
-    12px;
-
-  display:
-    none;
-
-  margin-top:
-    10px;
-
-}
-
-
-/* =====================================================
-   RECIBO
-===================================================== */
-
-.preview-wrapper {
-
-  overflow:
-    auto;
-
-}
-
-
-.receipt {
-
-  background:
-    white;
-
-  color:
-    #111;
-
-  width:
-    100%;
-
-  min-height:
-    650px;
-
-  padding:
-    45px;
-
-  border:
-    1px solid #ddd;
-
-  position:
-    relative;
-
-}
-
-
-.receipt-header {
-
-  text-align:
-    center;
-
-  border-bottom:
-    2px solid #111;
-
-  padding-bottom:
-    20px;
-
-  margin-bottom:
-    25px;
-
-}
-
-
-.receipt-logo {
-
-  max-width:
-    90px;
-
-  max-height:
-    70px;
-
-  object-fit:
-    contain;
-
-  margin-bottom:
-    10px;
-
-}
-
-
-.receipt-header h2 {
-
-  margin:
-    0;
-
-  font-size:
-    1.8rem;
-
-}
-
-
-.receipt-number {
-
-  margin-top:
-    8px;
-
-  color:
-    #666;
-
-  font-size:
-    .85rem;
-
-}
-
-
-.receipt-text {
-
-  line-height:
-    1.9;
-
-  font-size:
-    1rem;
-
-}
-
-
-.value-box {
-
-  margin:
-    25px 0;
-
-  padding:
-    18px;
-
-  background:
-    #f4f4f4;
-
-  border-left:
-    5px solid #111;
-
-  font-size:
-    1.25rem;
-
-  font-weight:
-    bold;
-
-}
-
-
-.pix-box {
-
-  margin-top:
-    20px;
-
-  padding:
-    12px;
-
-  border:
-    1px dashed #999;
-
-  font-size:
-    .9rem;
-
-}
-
-
-.signature-area {
-
-  margin-top:
-    65px;
-
-  text-align:
-    center;
-
-}
-
-
-.signature-image {
-
-  max-width:
-    180px;
-
-  max-height:
-    80px;
-
-  object-fit:
-    contain;
-
-  display:
-    none;
-
-  margin:
-    0 auto 5px;
-
-}
-
-
-.signature-line {
-
-  width:
-    70%;
-
-  margin:
-    auto;
-
-  border-top:
-    1px solid #111;
-
-  padding-top:
-    8px;
-
-}
-
-
-.receipt-footer {
-
-  margin-top:
-    35px;
-
-  text-align:
-    center;
-
-  color:
-    #777;
-
-  font-size:
-    .75rem;
-
-}
-
-
-/* =====================================================
-   ASSINATURA
-===================================================== */
-
-.signature-pad {
-
-  width:
-    100%;
-
-  height:
-    150px;
-
-  border:
-    1px solid var(--borda);
-
-  border-radius:
-    10px;
-
-  background:
-    white;
-
-  touch-action:
-    none;
-
-}
-
-
-.signature-buttons {
-
-  display:
-    flex;
-
-  gap:
-    8px;
-
-  margin-top:
-    8px;
-
-}
-
-
-/* =====================================================
-   APP
-===================================================== */
-
-.app-section {
-
-  margin-top:
-    30px;
-
-  background:
-
-    radial-gradient(
-      circle at top right,
-      rgba(255,255,255,.18),
-      transparent 35%
-    ),
-
-    linear-gradient(
-      135deg,
-      #0757b8,
-      #002f6c
-    );
-
-  color:
-    white;
-
-  border-radius:
-    20px;
-
-  padding:
-    25px;
-
-  display:
-    flex;
-
-  align-items:
-    center;
-
-  gap:
-    20px;
-
-}
-
-
-.app-icon {
-
-  width:
-    75px;
-
-  height:
-    75px;
-
-  border-radius:
-    18px;
-
-  object-fit:
-    cover;
-
-}
-
-
-.app-info {
-
-  flex:
-    1;
-
-}
-
-
-.app-info h2 {
-
-  margin:
-    0 0 6px;
-
-}
-
-
-.app-info p {
-
-  margin:
-    0;
-
-  color:
-    #dbeafe;
-
-  line-height:
-    1.5;
-
-}
-
-
-.download-button {
-
-  display:
-    inline-block;
-
-  background:
-    var(--verde);
-
-  color:
-    white;
-
-  text-decoration:
-    none;
-
-  padding:
-    13px 20px;
-
-  border-radius:
-    25px;
-
-  font-weight:
-    bold;
-
-  white-space:
-    nowrap;
-
-}
-
-
-/* =====================================================
-   APP FIXO
-===================================================== */
-
-.fixed-app {
-
-  position:
-    fixed;
-
-  bottom:
-    0;
-
-  left:
-    0;
-
-  right:
-    0;
-
-  z-index:
-    9999;
-
-  background:
-    rgba(15,23,42,.97);
-
-  backdrop-filter:
-    blur(10px);
-
-  color:
-    white;
-
-  padding:
-    9px 15px;
-
-  display:
-    flex;
-
-  align-items:
-    center;
-
-  gap:
-    12px;
-
-  box-shadow:
-    0 -5px 25px
-    rgba(0,0,0,.25);
-
-}
-
-
-.fixed-app img {
-
-  width:
-    45px;
-
-  height:
-    45px;
-
-  border-radius:
-    10px;
-
-}
-
-
-.fixed-info {
-
-  flex:
-    1;
-
-}
-
-
-.fixed-info strong {
-
-  display:
-    block;
-
-}
-
-
-.fixed-info span {
-
-  font-size:
-    .78rem;
-
-  color:
-    #cbd5e1;
-
-}
-
-
-.fixed-download {
-
-  background:
-    #22c55e;
-
-  color:
-    white;
-
-  text-decoration:
-    none;
-
-  padding:
-    10px 17px;
-
-  border-radius:
-    20px;
-
-  font-weight:
-    bold;
-
-  white-space:
-    nowrap;
-
-}
-
-
-/* =====================================================
-   FOOTER
-===================================================== */
-
-footer {
-
-  text-align:
-    center;
-
-  color:
-    var(--cinza);
-
-  padding:
-    35px 20px 110px;
-
-  font-size:
-    .9rem;
-
-}
-
-
-/* =====================================================
-   MOBILE
-===================================================== */
-
-@media(max-width:850px) {
-
-  .grid {
-
-    grid-template-columns:
-      1fr;
-
-  }
-
-}
-
-
-@media(max-width:600px) {
-
-  header {
-
-    padding:
-      35px 18px 60px;
-
-  }
-
-  .row {
-
-    grid-template-columns:
-      1fr;
-
-  }
-
-  .receipt {
-
-    padding:
-      25px;
-
-  }
-
-  .app-section {
-
-    flex-direction:
-      column;
-
-    text-align:
-      center;
-
-  }
-
-  .download-button {
-
-    width:
-      100%;
-
-    text-align:
-      center;
-
-  }
-
-  .fixed-info span {
-
-    display:
-      none;
-
-  }
-
-}
-
-
-/* =====================================================
-   IMPRESSÃO
-===================================================== */
-
-@media print {
-
-  body {
-
-    background:
-      white;
-
-  }
-
-  header,
-  .form-card,
-  .app-section,
-  footer,
-  .fixed-app,
-  .print-buttons {
-
-    display:
-      none !important;
-
-  }
-
-  .container {
-
-    width:
-      100%;
-
-    margin:
-      0;
-
-  }
-
-  .grid {
-
-    display:
-      block;
-
-  }
-
-  .card {
-
-    border:
-      0;
-
-    box-shadow:
-      none;
-
-    padding:
-      0;
-
-  }
-
-  .receipt {
-
-    border:
-      0;
-
-  }
 
 }
 
 </style>
-
 </head>
 
 
@@ -1107,21 +641,61 @@ footer {
 
 <header>
 
-  <h1>
-    🧾 Criador de Recibo Online
-  </h1>
+<div class="top-app">
 
-  <p>
-    Crie recibos profissionais gratuitamente,
-    adicione assinatura, PIX e logo,
-    e baixe seu documento em PDF em poucos segundos.
-  </p>
+<a href="https://play.google.com/store/apps/details?id=com.uscapps.recibos"
+target="_blank"
+rel="noopener">
+
+📱 Baixar meu App
+
+</a>
+
+</div>
+
+<h1>🧾 Recibo Fácil</h1>
+
+<p>
+Crie recibos profissionais gratuitamente.
+Adicione assinatura, logo e PIX e baixe
+seu documento em PDF.
+</p>
 
 </header>
 
 
 <main class="container">
 
+
+<!-- =====================================================
+     MENU
+===================================================== -->
+
+<div class="tabs">
+
+<button class="tab active"
+onclick="abrirPagina('criar',this)">
+🧾 Criar recibo
+</button>
+
+<button class="tab"
+onclick="abrirPagina('historico',this)">
+📚 Meus recibos
+</button>
+
+<button class="tab"
+onclick="abrirPagina('empresa',this)">
+🏢 Meus dados
+</button>
+
+</div>
+
+
+<!-- =====================================================
+     CRIAR
+===================================================== -->
+
+<section id="criar" class="page active">
 
 <div class="grid">
 
@@ -1132,454 +706,416 @@ footer {
 
 <section class="card form-card">
 
-  <h2>
-    ✍️ Dados do recibo
-  </h2>
+<h2>✍️ Dados do recibo</h2>
 
 
-  <!-- MODELO -->
+<div class="form-group">
 
-  <div class="form-group">
+<label>Modelo</label>
 
-    <label>
-      Modelo do recibo
-    </label>
+<select id="modelo">
 
-    <select id="modelo">
+<option value="classico">
+Clássico
+</option>
 
-      <option value="classico">
-        Clássico
-      </option>
+<option value="moderno">
+Moderno
+</option>
 
-      <option value="moderno">
-        Moderno
-      </option>
+<option value="simples">
+Simples
+</option>
 
-      <option value="simples">
-        Simples
-      </option>
+</select>
 
-    </select>
+</div>
 
-  </div>
 
+<div class="form-group">
 
-  <!-- EMPRESA -->
+<label>Recebedor / Empresa</label>
 
-  <div class="form-group">
+<input
+id="recebedor"
+placeholder="Nome de quem recebeu">
 
-    <label>
-      Nome do recebedor / empresa
-    </label>
+</div>
 
-    <input
-      id="recebedor"
-      placeholder="Ex.: João da Silva">
 
-  </div>
+<div class="row">
 
+<div class="form-group">
 
-  <div class="row">
+<label>CPF/CNPJ</label>
 
-    <div class="form-group">
+<input
+id="cpfRecebedor"
+placeholder="CPF ou CNPJ">
 
-      <label>
-        CPF/CNPJ
-      </label>
+</div>
 
-      <input
-        id="cpfRecebedor"
-        placeholder="CPF ou CNPJ">
 
-    </div>
+<div class="form-group">
 
+<label>Nº do recibo</label>
 
-    <div class="form-group">
+<input id="numero">
 
-      <label>
-        Número do recibo
-      </label>
+</div>
 
-      <input
-        id="numero"
-        placeholder="Automático">
+</div>
 
-    </div>
 
-  </div>
+<div class="form-group">
 
+<label>Pagador</label>
 
-  <!-- PAGADOR -->
+<input
+id="pagador"
+placeholder="Nome de quem pagou">
 
-  <div class="form-group">
+</div>
 
-    <label>
-      Nome do pagador
-    </label>
 
-    <input
-      id="pagador"
-      placeholder="Nome de quem realizou o pagamento">
+<div class="form-group">
 
-  </div>
+<label>CPF/CNPJ do pagador</label>
 
+<input
+id="cpfPagador"
+placeholder="CPF ou CNPJ">
 
-  <div class="form-group">
+</div>
 
-    <label>
-      CPF/CNPJ do pagador
-    </label>
 
-    <input
-      id="cpfPagador"
-      placeholder="CPF ou CNPJ">
+<div class="row">
 
-  </div>
+<div class="form-group">
 
+<label>Valor</label>
 
-  <!-- VALOR -->
+<div class="money-box">
 
-  <div class="row">
+<span>R$</span>
 
-    <div class="form-group">
+<input
+id="valor"
+class="money-input"
+inputmode="numeric"
+autocomplete="off"
+placeholder="0,00">
 
-      <label>
-        Valor (R$)
-      </label>
+</div>
 
-      <input
-        id="valor"
-        type="number"
-        step="0.01"
-        min="0"
-        placeholder="0,00">
+</div>
 
-    </div>
 
+<div class="form-group">
 
-    <div class="form-group">
+<label>Data</label>
 
-      <label>
-        Data
-      </label>
+<input
+id="data"
+type="date">
 
-      <input
-        id="data"
-        type="date">
+</div>
 
-    </div>
+</div>
 
-  </div>
 
+<div class="form-group">
 
-  <!-- DESCRIÇÃO -->
+<label>Referente a</label>
 
-  <div class="form-group">
+<textarea
+id="descricao"
+placeholder="Ex.: pagamento referente ao aluguel do mês de agosto."></textarea>
 
-    <label>
-      Referente a
-    </label>
+</div>
 
-    <textarea
-      id="descricao"
-      placeholder="Ex.: pagamento referente ao aluguel do mês de agosto."></textarea>
 
-  </div>
+<div class="form-group">
 
+<label>Cidade</label>
 
-  <!-- CIDADE -->
+<input
+id="cidade"
+placeholder="Cidade">
 
-  <div class="form-group">
+</div>
 
-    <label>
-      Cidade
-    </label>
 
-    <input
-      id="cidade"
-      placeholder="Cidade">
+<div class="form-group">
 
-  </div>
+<label>Chave PIX</label>
 
+<input
+id="pix"
+placeholder="CPF, telefone, e-mail ou chave aleatória">
 
-  <!-- PIX -->
+</div>
 
-  <div class="form-group">
 
-    <label>
-      Chave PIX (opcional)
-    </label>
+<div class="form-group">
 
-    <input
-      id="pix"
-      placeholder="CPF, telefone, e-mail ou chave aleatória">
+<label>Logo da empresa</label>
 
-  </div>
+<input
+id="logo"
+type="file"
+accept="image/*">
 
+<img
+id="logoPreview"
+class="logo-preview">
 
-  <!-- LOGO -->
+</div>
 
-  <div class="form-group">
 
-    <label>
-      Logo da empresa (opcional)
-    </label>
+<div class="form-group">
 
-    <input
-      id="logo"
-      type="file"
-      accept="image/*">
+<label>Assinatura</label>
 
-    <img
-      id="logoPreview"
-      class="logo-preview">
+<canvas
+id="signaturePad"
+class="signature-pad">
+</canvas>
 
-  </div>
+<div class="signature-buttons">
 
+<button
+class="secondary"
+onclick="limparAssinatura()">
 
-  <!-- ASSINATURA -->
+Limpar assinatura
 
-  <div class="form-group">
+</button>
 
-    <label>
-      Assinatura
-    </label>
+</div>
 
-    <canvas
-      id="signaturePad"
-      class="signature-pad">
-    </canvas>
+</div>
 
-    <div class="signature-buttons">
 
-      <button
-        class="secondary"
-        onclick="limparAssinatura()">
+<div class="buttons">
 
-        Limpar assinatura
+<button
+class="primary"
+onclick="gerarRecibo()">
 
-      </button>
+🔄 Atualizar
 
-    </div>
+</button>
 
-  </div>
+<button
+class="secondary"
+onclick="novoRecibo()">
 
+➕ Novo
 
-  <!-- BOTÕES -->
+</button>
 
-  <div class="buttons">
-
-    <button
-      class="primary"
-      onclick="gerarRecibo()">
-
-      🔄 Atualizar
-
-    </button>
-
-    <button
-      class="secondary"
-      onclick="limparFormulario()">
-
-      🧹 Limpar
-
-    </button>
-
-  </div>
-
+</div>
 
 </section>
 
 
 <!-- =====================================================
-     PREVIEW
+     RECIBO
 ===================================================== -->
 
 <section class="card">
 
-  <h2>
-    👁️ Seu recibo
-  </h2>
+<h2>👁️ Pré-visualização</h2>
 
+<div class="preview-wrapper">
 
-  <div class="preview-wrapper">
+<div id="receipt" class="receipt">
 
-    <div
-      id="receipt"
-      class="receipt">
 
+<div class="receipt-header">
 
-      <div class="receipt-header">
+<img
+id="previewLogo"
+class="receipt-logo">
 
-        <img
-          id="previewLogo"
-          class="receipt-logo"
-          style="display:none;">
+<h2>
+RECIBO DE PAGAMENTO
+</h2>
 
-        <h2>
-          RECIBO DE PAGAMENTO
-        </h2>
+<div class="receipt-number">
 
-        <div class="receipt-number">
+Nº
+<span id="previewNumero">
+001
+</span>
 
-          Nº
-          <span id="previewNumero">
-            001
-          </span>
+</div>
 
-        </div>
+</div>
 
-      </div>
 
+<div class="receipt-text">
 
-      <div class="receipt-text">
+Recebi de
 
-        Recebi de
+<strong id="previewPagador">
+[Nome do pagador]
+</strong>
 
-        <strong id="previewPagador">
-          [Nome do pagador]
-        </strong>
+<span id="previewCpfPagador"></span>,
 
-        <span id="previewCpfPagador"></span>,
+a importância de
 
-        a importância de
+<strong id="previewValorExtenso">
+[valor por extenso]
+</strong>,
 
-        <strong id="previewValorExtenso">
-          [valor por extenso]
-        </strong>,
+referente a:
 
-        referente a:
+<strong id="previewDescricao">
+[descrição]
+</strong>.
 
-        <strong id="previewDescricao">
-          [descrição do pagamento]
-        </strong>.
+</div>
 
-      </div>
 
+<div class="value-box">
 
-      <div class="value-box">
+Valor:
 
-        Valor:
+<span id="previewValor">
+R$ 0,00
+</span>
 
-        <span id="previewValor">
-          R$ 0,00
-        </span>
+</div>
 
-      </div>
 
+<div class="receipt-text">
 
-      <div class="receipt-text">
+<strong>Recebedor:</strong>
 
-        <strong>
-          Recebedor:
-        </strong>
+<span id="previewRecebedor">
+[Nome do recebedor]
+</span>
 
-        <span id="previewRecebedor">
-          [Nome do recebedor]
-        </span>
+<br>
 
-        <br>
+<strong>CPF/CNPJ:</strong>
 
-        <strong>
-          CPF/CNPJ:
-        </strong>
+<span id="previewCpfRecebedor">
+—
+</span>
 
-        <span id="previewCpfRecebedor">
-          —
-        </span>
+</div>
 
-      </div>
 
+<div
+id="previewPixBox"
+class="pix-box">
 
-      <div
-        id="previewPixBox"
-        class="pix-box"
-        style="display:none;">
+<div class="pix-content">
 
-        <strong>
-          PIX:
-        </strong>
+<div id="qrcode"></div>
 
-        <span id="previewPix"></span>
+<div>
 
-      </div>
+<strong>Pagamento via PIX</strong>
 
+<br><br>
 
-      <div class="signature-area">
+Chave:
 
-        <img
-          id="previewSignature"
-          class="signature-image">
+<span id="previewPix"></span>
 
-        <div class="signature-line">
+</div>
 
-          <strong id="previewAssinatura">
-            [Nome do recebedor]
-          </strong>
+</div>
 
-          <br>
+</div>
 
-          Recebedor
 
-        </div>
+<div class="signature-area">
 
-      </div>
+<img
+id="previewSignature"
+class="signature-image">
 
+<div class="signature-line">
 
-      <div class="receipt-footer">
+<strong id="previewAssinatura">
+[Nome do recebedor]
+</strong>
 
-        <span id="previewCidade">
-          [Cidade]
-        </span>
+<br>
 
-        ,
+Recebedor
 
-        <span id="previewData">
-          [Data]
-        </span>
+</div>
 
-        <br><br>
+</div>
 
-        Documento gerado gratuitamente pelo
-        Criador de Recibo Online — USC Apps.
 
-      </div>
+<div class="receipt-footer">
 
+<span id="previewCidade">
+[Cidade]
+</span>
 
-    </div>
+,
 
-  </div>
+<span id="previewData">
+[Data]
+</span>
 
+<br><br>
 
-  <div class="buttons print-buttons">
+Documento gerado pelo
+Criador de Recibo Online — USC Apps.
 
-    <button
-      class="green"
-      onclick="baixarPDF()">
+</div>
 
-      📥 Baixar PDF
 
-    </button>
+</div>
 
+</div>
 
-    <button
-      class="primary"
-      onclick="window.print()">
 
-      🖨️ Imprimir
+<div class="buttons print-buttons">
 
-    </button>
+<button
+class="green"
+onclick="baixarPDF()">
 
+📥 Baixar PDF
 
-    <button
-      class="secondary"
-      onclick="compartilhar()">
+</button>
 
-      📤 Compartilhar
+<button
+class="primary"
+onclick="window.print()">
 
-    </button>
+🖨️ Imprimir
 
-  </div>
+</button>
+
+<button
+class="secondary"
+onclick="salvarHistorico()">
+
+💾 Salvar
+
+</button>
+
+<button
+class="secondary"
+onclick="compartilhar()">
+
+📤 Compartilhar
+
+</button>
+
+</div>
 
 </section>
 
@@ -1590,37 +1126,204 @@ footer {
      APP
 ===================================================== -->
 
-<section class="app-section">
+<section class="app-banner">
 
-  <img
-    class="app-icon"
-    src="https://play-lh.googleusercontent.com/Ki0OaYHMw67Yw1ETHV2eyKZAST7JMVjCIrNGzmcadwHEkhq3BU_CYtt1IC9ZqKcE7iA=w240-h480-rw"
-    alt="Recibo para Clientes">
+<img
+class="app-icon"
+src="https://play-lh.googleusercontent.com/Ki0OaYHMw67Yw1ETHV2eyKZAST7JMVjCIrNGzmcadwHEkhq3BU_CYtt1IC9ZqKcE7iA=w240-h480-rw"
+alt="Recibo para Clientes">
+
+<div class="app-info">
+
+<h2>
+📱 Tenha o Recibo para Clientes no celular
+</h2>
+
+<p>
+Crie seus recibos diretamente pelo celular
+com o aplicativo da USC Apps.
+</p>
+
+</div>
+
+<a
+class="download"
+href="https://play.google.com/store/apps/details?id=com.uscapps.recibos"
+target="_blank"
+rel="noopener">
+
+📲 BAIXAR APP
+
+</a>
+
+</section>
+
+</section>
 
 
-  <div class="app-info">
+<!-- =====================================================
+     HISTÓRICO
+===================================================== -->
 
-    <h2>
-      📱 Tenha o Recibo para Clientes no celular
-    </h2>
+<section id="historico" class="page">
 
-    <p>
-      Gere seus recibos diretamente pelo celular,
-      de maneira rápida e prática.
-    </p>
+<div class="card">
 
-  </div>
+<h2>
+📚 Meus recibos
+</h2>
+
+<p style="color:#64748b">
+
+Os recibos ficam salvos somente neste dispositivo.
+Não utilizamos banco de dados.
+
+</p>
+
+<div id="historicoLista"></div>
+
+</div>
 
 
-  <a
-    class="download-button"
-    href="https://play.google.com/store/apps/details?id=com.uscapps.recibos"
-    target="_blank"
-    rel="noopener">
+<div class="app-banner">
 
-    📲 Baixar o App
+<img
+class="app-icon"
+src="https://play-lh.googleusercontent.com/Ki0OaYHMw67Yw1ETHV2eyKZAST7JMVjCIrNGzmcadwHEkhq3BU_CYtt1IC9ZqKcE7iA=w240-h480-rw">
 
-  </a>
+<div class="app-info">
+
+<h2>
+📱 Baixe também nosso aplicativo
+</h2>
+
+<p>
+Tenha o Recibo para Clientes sempre no seu celular.
+</p>
+
+</div>
+
+<a
+class="download"
+href="https://play.google.com/store/apps/details?id=com.uscapps.recibos"
+target="_blank">
+
+BAIXAR APP
+
+</a>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     EMPRESA
+===================================================== -->
+
+<section id="empresa" class="page">
+
+<div class="card">
+
+<h2>
+🏢 Meus dados
+</h2>
+
+<div id="savedMessage" class="saved">
+
+✓ Dados salvos neste dispositivo.
+
+</div>
+
+
+<div class="form-group">
+
+<label>Nome / Empresa</label>
+
+<input id="empresaNome">
+
+</div>
+
+
+<div class="form-group">
+
+<label>CPF/CNPJ</label>
+
+<input id="empresaDocumento">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Telefone</label>
+
+<input id="empresaTelefone">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Endereço</label>
+
+<input id="empresaEndereco">
+
+</div>
+
+
+<div class="form-group">
+
+<label>PIX padrão</label>
+
+<input id="empresaPix">
+
+</div>
+
+
+<div class="buttons">
+
+<button
+class="green"
+onclick="salvarEmpresa()">
+
+💾 Salvar dados
+
+</button>
+
+</div>
+
+</div>
+
+
+<div class="app-banner">
+
+<img
+class="app-icon"
+src="https://play-lh.googleusercontent.com/Ki0OaYHMw67Yw1ETHV2eyKZAST7JMVjCIrNGzmcadwHEkhq3BU_CYtt1IC9ZqKcE7iA=w240-h480-rw">
+
+<div class="app-info">
+
+<h2>
+📱 Use também no celular
+</h2>
+
+<p>
+Baixe gratuitamente o Recibo para Clientes.
+</p>
+
+</div>
+
+<a
+class="download"
+href="https://play.google.com/store/apps/details?id=com.uscapps.recibos"
+target="_blank">
+
+📲 BAIXAR APP
+
+</a>
+
+</div>
 
 </section>
 
@@ -1628,1321 +1331,1745 @@ footer {
 </main>
 
 
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
 <footer>
 
-  © 2026 USC Apps.
-  Todos os direitos reservados.
+© 2026 USC Apps. Todos os direitos reservados.
 
-  <br><br>
+<br><br>
 
-  Criador de Recibo Online — rápido,
-  gratuito e fácil de usar.
+Seus dados são armazenados localmente no dispositivo.
 
 </footer>
 
 
 <!-- =====================================================
-     BANNER FIXO
+     BANNER FIXO DO APP
 ===================================================== -->
 
 <div class="fixed-app">
 
-  <img
-    src="https://play-lh.googleusercontent.com/Ki0OaYHMw67Yw1ETHV2eyKZAST7JMVjCIrNGzmcadwHEkhq3BU_CYtt1IC9ZqKcE7iA=w240-h480-rw"
-    alt="Recibo para Clientes">
+<img
+src="https://play-lh.googleusercontent.com/Ki0OaYHMw67Yw1ETHV2eyKZAST7JMVjCIrNGzmcadwHEkhq3BU_CYtt1IC9ZqKcE7iA=w240-h480-rw"
+alt="Recibo para Clientes">
 
+<div class="fixed-info">
 
-  <div class="fixed-info">
+<strong>
+Recibo para Clientes
+</strong>
 
-    <strong>
-      Recibo para Clientes
-    </strong>
+<span>
+Crie recibos diretamente pelo celular.
+</span>
 
-    <span>
-      Crie seus recibos pelo celular.
-    </span>
+</div>
 
-  </div>
+<a
+class="fixed-download"
+href="https://play.google.com/store/apps/details?id=com.uscapps.recibos"
+target="_blank"
+rel="noopener">
 
+📲 BAIXAR
 
-  <a
-    class="fixed-download"
-    href="https://play.google.com/store/apps/details?id=com.uscapps.recibos"
-    target="_blank"
-    rel="noopener">
-
-    📲 Baixar
-
-  </a>
+</a>
 
 </div>
 
 
-
 <script>
 
-/* =====================================================
-   ELEMENTOS
-===================================================== */
+/* =========================================================
+   UTILIDADES
+========================================================= */
 
-const campos = [
+const $ = id =>
+document.getElementById(id);
 
-  "modelo",
-  "recebedor",
-  "cpfRecebedor",
-  "numero",
-  "pagador",
-  "cpfPagador",
-  "valor",
-  "data",
-  "descricao",
-  "cidade",
-  "pix"
 
+/* =========================================================
+   DATA
+========================================================= */
+
+const hoje =
+new Date();
+
+$("data").value =
+hoje.toISOString().split("T")[0];
+
+
+/* =========================================================
+   NÚMERO AUTOMÁTICO
+========================================================= */
+
+let numeroAtual =
+parseInt(
+localStorage.getItem("numeroRecibo") || "1",
+10
+);
+
+$("numero").value =
+String(numeroAtual).padStart(3,"0");
+
+
+/* =========================================================
+   NAVEGAÇÃO
+========================================================= */
+
+function abrirPagina(id,botao){
+
+document
+.querySelectorAll(".page")
+.forEach(p =>
+p.classList.remove("active")
+);
+
+document
+.querySelectorAll(".tab")
+.forEach(b =>
+b.classList.remove("active")
+);
+
+$(id).classList.add("active");
+
+if(botao)
+botao.classList.add("active");
+
+if(id === "historico")
+renderHistorico();
+
+}
+
+
+/* =========================================================
+   DINHEIRO
+========================================================= */
+
+/*
+   O campo trabalha internamente com centavos.
+
+   Exemplos:
+
+   1      -> R$ 0,01
+   10     -> R$ 0,10
+   100    -> R$ 1,00
+   1000   -> R$ 10,00
+   10000  -> R$ 100,00
+*/
+
+function formatarDinheiro(){
+
+let numeros =
+$("valor").value.replace(/\D/g,"");
+
+if(!numeros){
+
+$("valor").value="";
+
+gerarRecibo();
+
+return;
+}
+
+let valor =
+parseInt(numeros,10) / 100;
+
+$("valor").value =
+valor.toLocaleString(
+"pt-BR",
+{
+minimumFractionDigits:2,
+maximumFractionDigits:2
+}
+);
+
+gerarRecibo();
+
+}
+
+
+$("valor")
+.addEventListener(
+"input",
+formatarDinheiro
+);
+
+
+function valorNumerico(){
+
+let texto =
+$("valor").value
+.replace(/\./g,"")
+.replace(",",".")
+.replace(/[^\d.]/g,"");
+
+return parseFloat(texto) || 0;
+
+}
+
+
+function moeda(valor){
+
+return Number(valor || 0)
+.toLocaleString(
+"pt-BR",
+{
+style:"currency",
+currency:"BRL"
+}
+);
+
+}
+
+
+/* =========================================================
+   NÚMERO POR EXTENSO
+========================================================= */
+
+function numeroExtenso(numero){
+
+numero =
+Number(numero);
+
+if(!numero)
+return "[valor por extenso]";
+
+
+const unidades = [
+"",
+"um",
+"dois",
+"três",
+"quatro",
+"cinco",
+"seis",
+"sete",
+"oito",
+"nove"
 ];
 
 
-/* =====================================================
-   DATA
-===================================================== */
+const especiais = [
+"dez",
+"onze",
+"doze",
+"treze",
+"quatorze",
+"quinze",
+"dezesseis",
+"dezessete",
+"dezoito",
+"dezenove"
+];
 
-const hoje = new Date();
 
-document.getElementById("data").value =
-  hoje.toISOString().split("T")[0];
+const dezenas = [
+"",
+"",
+"vinte",
+"trinta",
+"quarenta",
+"cinquenta",
+"sessenta",
+"setenta",
+"oitenta",
+"noventa"
+];
 
 
-/* =====================================================
-   NÚMERO AUTOMÁTICO
-===================================================== */
+const centenas = [
+"",
+"cento",
+"duzentos",
+"trezentos",
+"quatrocentos",
+"quinhentos",
+"seiscentos",
+"setecentos",
+"oitocentos",
+"novecentos"
+];
 
-if (!localStorage.getItem("numeroRecibo")) {
 
-  localStorage.setItem(
-    "numeroRecibo",
-    "1"
-  );
+function ate999(n){
+
+if(n === 0)
+return "";
+
+if(n === 100)
+return "cem";
+
+
+let texto="";
+
+let c =
+Math.floor(n/100);
+
+let resto =
+n%100;
+
+
+if(c)
+texto += centenas[c];
+
+
+if(resto){
+
+if(texto)
+texto += " e ";
+
+
+if(resto < 10){
+
+texto += unidades[resto];
 
 }
 
-document.getElementById("numero").value =
-  String(
-    localStorage.getItem("numeroRecibo")
-  ).padStart(3, "0");
+else if(resto < 20){
 
-
-/* =====================================================
-   MOEDA
-===================================================== */
-
-function moeda(valor) {
-
-  return Number(valor || 0)
-    .toLocaleString(
-      "pt-BR",
-      {
-        style: "currency",
-        currency: "BRL"
-      }
-    );
+texto +=
+especiais[resto-10];
 
 }
 
+else{
 
-/* =====================================================
-   NÚMERO POR EXTENSO
-===================================================== */
+let d =
+Math.floor(resto/10);
 
-function numeroExtenso(numero) {
+let u =
+resto%10;
 
-  numero = Number(numero);
+texto += dezenas[d];
 
-  if (!numero || numero <= 0) {
+if(u)
+texto +=
+" e " +
+unidades[u];
 
-    return "[valor por extenso]";
+}
 
-  }
+}
 
-
-  const unidades = [
-
-    "",
-    "um",
-    "dois",
-    "três",
-    "quatro",
-    "cinco",
-    "seis",
-    "sete",
-    "oito",
-    "nove"
-
-  ];
-
-
-  const especiais = [
-
-    "dez",
-    "onze",
-    "doze",
-    "treze",
-    "quatorze",
-    "quinze",
-    "dezesseis",
-    "dezessete",
-    "dezoito",
-    "dezenove"
-
-  ];
-
-
-  const dezenas = [
-
-    "",
-    "",
-    "vinte",
-    "trinta",
-    "quarenta",
-    "cinquenta",
-    "sessenta",
-    "setenta",
-    "oitenta",
-    "noventa"
-
-  ];
-
-
-  const centenas = [
-
-    "",
-    "cento",
-    "duzentos",
-    "trezentos",
-    "quatrocentos",
-    "quinhentos",
-    "seiscentos",
-    "setecentos",
-    "oitocentos",
-    "novecentos"
-
-  ];
-
-
-  function ate999(n) {
-
-    if (n === 0)
-      return "";
-
-    if (n === 100)
-      return "cem";
-
-
-    let texto = "";
-
-    const c =
-      Math.floor(n / 100);
-
-    const resto =
-      n % 100;
-
-
-    if (c)
-      texto += centenas[c];
-
-
-    if (resto) {
-
-      if (texto)
-        texto += " e ";
-
-
-      if (resto < 10) {
-
-        texto +=
-          unidades[resto];
-
-      }
-
-      else if (resto < 20) {
-
-        texto +=
-          especiais[resto - 10];
-
-      }
-
-      else {
-
-        const d =
-          Math.floor(resto / 10);
-
-        const u =
-          resto % 10;
-
-
-        texto +=
-          dezenas[d];
-
-
-        if (u) {
-
-          texto +=
-            " e " +
-            unidades[u];
-
-        }
-
-      }
-
-    }
-
-
-    return texto;
-
-  }
-
-
-  const reais =
-    Math.floor(numero);
-
-  const centavos =
-    Math.round(
-      (numero - reais) * 100
-    );
-
-
-  let texto = "";
-
-
-  if (reais >= 1000000) {
-
-    const milhoes =
-      Math.floor(reais / 1000000);
-
-    const resto =
-      reais % 1000000;
-
-
-    texto +=
-      ate999(milhoes);
-
-
-    texto +=
-      milhoes === 1
-        ? " milhão"
-        : " milhões";
-
-
-    if (resto)
-      texto +=
-        " e " +
-        ate999(resto);
-
-  }
-
-  else if (reais >= 1000) {
-
-    const milhares =
-      Math.floor(reais / 1000);
-
-    const resto =
-      reais % 1000;
-
-
-    if (milhares === 1)
-      texto += "mil";
-
-    else
-      texto +=
-        ate999(milhares) +
-        " mil";
-
-
-    if (resto)
-      texto +=
-        " e " +
-        ate999(resto);
-
-  }
-
-  else {
-
-    texto =
-      ate999(reais);
-
-  }
-
-
-  if (reais === 1)
-    texto += " real";
-
-  else if (reais > 0)
-    texto += " reais";
-
-
-  if (centavos > 0) {
-
-    if (texto)
-      texto += " e ";
-
-
-    texto +=
-      ate999(centavos);
-
-
-    texto +=
-      centavos === 1
-        ? " centavo"
-        : " centavos";
-
-  }
-
-
-  return texto.charAt(0).toUpperCase()
-    + texto.slice(1);
+return texto;
 
 }
 
 
-/* =====================================================
-   DATA
-===================================================== */
+const reais =
+Math.floor(numero);
 
-function dataBR(data) {
-
-  if (!data)
-    return "[Data]";
-
-
-  const p =
-    data.split("-");
+const centavos =
+Math.round(
+(numero-reais)*100
+);
 
 
-  return `${p[2]}/${p[1]}/${p[0]}`;
+let texto="";
+
+
+if(reais >= 1000000){
+
+let milhoes =
+Math.floor(reais/1000000);
+
+let resto =
+reais%1000000;
+
+texto +=
+ate999(milhoes);
+
+texto +=
+milhoes === 1
+? " milhão"
+: " milhões";
+
+if(resto)
+texto +=
+" e " +
+ate999(resto);
+
+}
+
+else if(reais >= 1000){
+
+let milhares =
+Math.floor(reais/1000);
+
+let resto =
+reais%1000;
+
+if(milhares === 1)
+texto += "mil";
+else
+texto +=
+ate999(milhares) +
+" mil";
+
+if(resto)
+texto +=
+" e " +
+ate999(resto);
+
+}
+
+else{
+
+texto =
+ate999(reais);
 
 }
 
 
-/* =====================================================
+if(reais === 1)
+texto += " real";
+
+else if(reais > 0)
+texto += " reais";
+
+
+if(centavos > 0){
+
+if(texto)
+texto += " e ";
+
+texto +=
+ate999(centavos);
+
+texto +=
+centavos === 1
+? " centavo"
+: " centavos";
+
+}
+
+
+return texto.charAt(0).toUpperCase()
++
+texto.slice(1);
+
+}
+
+
+/* =========================================================
+   DATA BR
+========================================================= */
+
+function dataBR(data){
+
+if(!data)
+return "[Data]";
+
+const p =
+data.split("-");
+
+return `${p[2]}/${p[1]}/${p[0]}`;
+
+}
+
+
+/* =========================================================
    CPF / CNPJ
-===================================================== */
+========================================================= */
 
-function formatarDocumento(valor) {
+function formatarDocumento(valor){
 
-  let numeros =
-    valor.replace(/\D/g, "");
+let n =
+valor.replace(/\D/g,"");
 
+if(n.length <= 11){
 
-  if (numeros.length <= 11) {
+n =
+n.substring(0,11);
 
-    numeros =
-      numeros.substring(0, 11);
-
-
-    numeros =
-      numeros.replace(
-        /(\d{3})(\d)/,
-        "$1.$2"
-      );
-
-
-    numeros =
-      numeros.replace(
-        /(\d{3})(\d)/,
-        "$1.$2"
-      );
-
-
-    numeros =
-      numeros.replace(
-        /(\d{3})(\d{1,2})$/,
-        "$1-$2"
-      );
-
-  }
-
-  else {
-
-    numeros =
-      numeros.substring(0, 14);
-
-
-    numeros =
-      numeros.replace(
-        /^(\d{2})(\d)/,
-        "$1.$2"
-      );
-
-
-    numeros =
-      numeros.replace(
-        /^(\d{2})\.(\d{3})(\d)/,
-        "$1.$2.$3"
-      );
-
-
-    numeros =
-      numeros.replace(
-        /\.(\d{3})(\d)/,
-        ".$1/$2"
-      );
-
-
-    numeros =
-      numeros.replace(
-        /(\d{4})(\d)/,
-        "$1-$2"
-      );
-
-  }
-
-
-  return numeros;
-
-}
-
-
-document
-  .getElementById("cpfRecebedor")
-  .addEventListener(
-    "input",
-    function () {
-
-      this.value =
-        formatarDocumento(
-          this.value
-        );
-
-    }
-  );
-
-
-document
-  .getElementById("cpfPagador")
-  .addEventListener(
-    "input",
-    function () {
-
-      this.value =
-        formatarDocumento(
-          this.value
-        );
-
-    }
-  );
-
-
-/* =====================================================
-   GERAR RECIBO
-===================================================== */
-
-function gerarRecibo() {
-
-  const recebedor =
-    document
-      .getElementById("recebedor")
-      .value
-      .trim();
-
-
-  const cpfRecebedor =
-    document
-      .getElementById("cpfRecebedor")
-      .value
-      .trim();
-
-
-  const pagador =
-    document
-      .getElementById("pagador")
-      .value
-      .trim();
-
-
-  const cpfPagador =
-    document
-      .getElementById("cpfPagador")
-      .value
-      .trim();
-
-
-  const valor =
-    document
-      .getElementById("valor")
-      .value;
-
-
-  const descricao =
-    document
-      .getElementById("descricao")
-      .value
-      .trim();
-
-
-  const cidade =
-    document
-      .getElementById("cidade")
-      .value
-      .trim();
-
-
-  const data =
-    document
-      .getElementById("data")
-      .value;
-
-
-  const numero =
-    document
-      .getElementById("numero")
-      .value
-      .trim();
-
-
-  const pix =
-    document
-      .getElementById("pix")
-      .value
-      .trim();
-
-
-  document
-    .getElementById("previewRecebedor")
-    .textContent =
-      recebedor ||
-      "[Nome do recebedor]";
-
-
-  document
-    .getElementById("previewAssinatura")
-    .textContent =
-      recebedor ||
-      "[Nome do recebedor]";
-
-
-  document
-    .getElementById("previewCpfRecebedor")
-    .textContent =
-      cpfRecebedor || "—";
-
-
-  document
-    .getElementById("previewPagador")
-    .textContent =
-      pagador ||
-      "[Nome do pagador]";
-
-
-  document
-    .getElementById("previewCpfPagador")
-    .textContent =
-      cpfPagador
-        ? ` — CPF/CNPJ: ${cpfPagador}`
-        : "";
-
-
-  document
-    .getElementById("previewValor")
-    .textContent =
-      moeda(valor);
-
-
-  document
-    .getElementById("previewValorExtenso")
-    .textContent =
-      numeroExtenso(valor);
-
-
-  document
-    .getElementById("previewDescricao")
-    .textContent =
-      descricao ||
-      "[descrição do pagamento]";
-
-
-  document
-    .getElementById("previewCidade")
-    .textContent =
-      cidade ||
-      "[Cidade]";
-
-
-  document
-    .getElementById("previewData")
-    .textContent =
-      dataBR(data);
-
-
-  document
-    .getElementById("previewNumero")
-    .textContent =
-      numero || "001";
-
-
-  /* PIX */
-
-  const pixBox =
-    document
-      .getElementById("previewPixBox");
-
-
-  if (pix) {
-
-    pixBox.style.display =
-      "block";
-
-    document
-      .getElementById("previewPix")
-      .textContent =
-        pix;
-
-  }
-
-  else {
-
-    pixBox.style.display =
-      "none";
-
-  }
-
-
-  /* SALVAR */
-
-  campos.forEach(id => {
-
-    localStorage.setItem(
-      "recibo_" + id,
-      document
-        .getElementById(id)
-        .value
-    );
-
-  });
-
-}
-
-
-/* =====================================================
-   LOGO
-===================================================== */
-
-document
-  .getElementById("logo")
-  .addEventListener(
-    "change",
-    function () {
-
-      const file =
-        this.files[0];
-
-      if (!file)
-        return;
-
-
-      const reader =
-        new FileReader();
-
-
-      reader.onload =
-        function (e) {
-
-          localStorage.setItem(
-            "recibo_logo",
-            e.target.result
-          );
-
-
-          const preview =
-            document
-              .getElementById("logoPreview");
-
-
-          preview.src =
-            e.target.result;
-
-          preview.style.display =
-            "block";
-
-
-          const receiptLogo =
-            document
-              .getElementById("previewLogo");
-
-
-          receiptLogo.src =
-            e.target.result;
-
-          receiptLogo.style.display =
-            "block";
-
-        };
-
-
-      reader.readAsDataURL(file);
-
-    }
-  );
-
-
-/* =====================================================
-   ASSINATURA
-===================================================== */
-
-const canvas =
-  document.getElementById(
-    "signaturePad"
-  );
-
-
-const ctx =
-  canvas.getContext("2d");
-
-
-let desenhando = false;
-
-
-function ajustarCanvas() {
-
-  const rect =
-    canvas.getBoundingClientRect();
-
-
-  const ratio =
-    window.devicePixelRatio || 1;
-
-
-  canvas.width =
-    rect.width * ratio;
-
-
-  canvas.height =
-    rect.height * ratio;
-
-
-  ctx.scale(
-    ratio,
-    ratio
-  );
-
-
-  ctx.lineWidth = 2;
-
-  ctx.lineCap =
-    "round";
-
-}
-
-
-ajustarCanvas();
-
-
-window.addEventListener(
-  "resize",
-  ajustarCanvas
+n =
+n.replace(
+/(\d{3})(\d)/,
+"$1.$2"
 );
 
-
-function posicao(e) {
-
-  const rect =
-    canvas.getBoundingClientRect();
-
-
-  return {
-
-    x:
-      e.clientX -
-      rect.left,
-
-    y:
-      e.clientY -
-      rect.top
-
-  };
-
-}
-
-
-canvas.addEventListener(
-  "pointerdown",
-  e => {
-
-    desenhando = true;
-
-    const p =
-      posicao(e);
-
-    ctx.beginPath();
-
-    ctx.moveTo(
-      p.x,
-      p.y
-    );
-
-  }
+n =
+n.replace(
+/(\d{3})(\d)/,
+"$1.$2"
 );
 
-
-canvas.addEventListener(
-  "pointermove",
-  e => {
-
-    if (!desenhando)
-      return;
-
-
-    const p =
-      posicao(e);
-
-
-    ctx.lineTo(
-      p.x,
-      p.y
-    );
-
-
-    ctx.stroke();
-
-  }
+n =
+n.replace(
+/(\d{3})(\d{1,2})$/,
+"$1-$2"
 );
 
+}else{
 
-canvas.addEventListener(
-  "pointerup",
-  () => {
+n =
+n.substring(0,14);
 
-    desenhando = false;
-
-    salvarAssinatura();
-
-  }
+n =
+n.replace(
+/^(\d{2})(\d)/,
+"$1.$2"
 );
 
-
-canvas.addEventListener(
-  "pointerleave",
-  () => {
-
-    desenhando = false;
-
-  }
+n =
+n.replace(
+/^(\d{2})\.(\d{3})(\d)/,
+"$1.$2.$3"
 );
 
+n =
+n.replace(
+/\.(\d{3})(\d)/,
+".$1/$2"
+);
 
-function salvarAssinatura() {
+n =
+n.replace(
+/(\d{4})(\d)/,
+"$1-$2"
+);
 
-  const imagem =
-    canvas.toDataURL(
-      "image/png"
-    );
+}
 
-
-  localStorage.setItem(
-    "recibo_assinatura",
-    imagem
-  );
-
-
-  const preview =
-    document
-      .getElementById(
-        "previewSignature"
-      );
-
-
-  preview.src =
-    imagem;
-
-  preview.style.display =
-    "block";
+return n;
 
 }
 
 
-function limparAssinatura() {
-
-  ctx.clearRect(
-    0,
-    0,
-    canvas.width,
-    canvas.height
-  );
-
-
-  localStorage.removeItem(
-    "recibo_assinatura"
-  );
-
-
-  document
-    .getElementById(
-      "previewSignature"
-    )
-    .style.display =
-      "none";
-
-}
-
-
-/* =====================================================
-   CARREGAR DADOS
-===================================================== */
-
-function carregarDados() {
-
-  campos.forEach(id => {
-
-    const salvo =
-      localStorage.getItem(
-        "recibo_" + id
-      );
-
-
-    if (salvo !== null) {
-
-      document
-        .getElementById(id)
-        .value =
-          salvo;
-
-    }
-
-  });
-
-
-  const logo =
-    localStorage.getItem(
-      "recibo_logo"
-    );
-
-
-  if (logo) {
-
-    document
-      .getElementById(
-        "logoPreview"
-      ).src = logo;
-
-
-    document
-      .getElementById(
-        "logoPreview"
-      ).style.display =
-        "block";
-
-
-    document
-      .getElementById(
-        "previewLogo"
-      ).src = logo;
-
-
-    document
-      .getElementById(
-        "previewLogo"
-      ).style.display =
-        "block";
-
-  }
-
-
-  const assinatura =
-    localStorage.getItem(
-      "recibo_assinatura"
-    );
-
-
-  if (assinatura) {
-
-    document
-      .getElementById(
-        "previewSignature"
-      ).src =
-        assinatura;
-
-
-    document
-      .getElementById(
-        "previewSignature"
-      ).style.display =
-        "block";
-
-  }
-
-
-  gerarRecibo();
-
-}
-
-
-/* =====================================================
-   LIMPAR FORMULÁRIO
-===================================================== */
-
-function limparFormulario() {
-
-  if (
-    !confirm(
-      "Deseja apagar todos os dados?"
-    )
-  )
-    return;
-
-
-  campos.forEach(id => {
-
-    localStorage.removeItem(
-      "recibo_" + id
-    );
-
-
-    document
-      .getElementById(id)
-      .value = "";
-
-  });
-
-
-  localStorage.removeItem(
-    "recibo_logo"
-  );
-
-
-  limparAssinatura();
-
-
-  document
-    .getElementById(
-      "data"
-    )
-    .value =
-      new Date()
-        .toISOString()
-        .split("T")[0];
-
-
-  document
-    .getElementById(
-      "numero"
-    )
-    .value =
-      String(
-        localStorage.getItem(
-          "numeroRecibo"
-        )
-      ).padStart(
-        3,
-        "0"
-      );
-
-
-  document
-    .getElementById(
-      "logoPreview"
-    )
-    .style.display =
-      "none";
-
-
-  document
-    .getElementById(
-      "previewLogo"
-    )
-    .style.display =
-      "none";
-
-
-  gerarRecibo();
-
-}
-
-
-/* =====================================================
-   PDF
-===================================================== */
-
-async function baixarPDF() {
-
-  gerarRecibo();
-
-
-  const recibo =
-    document.getElementById(
-      "receipt"
-    );
-
-
-  const canvasPDF =
-    await html2canvas(
-      recibo,
-      {
-        scale: 2,
-        backgroundColor:
-          "#ffffff"
-      }
-    );
-
-
-  const imagem =
-    canvasPDF.toDataURL(
-      "image/jpeg",
-      0.95
-    );
-
-
-  const {
-    jsPDF
-  } =
-    window.jspdf;
-
-
-  const pdf =
-    new jsPDF(
-      "p",
-      "mm",
-      "a4"
-    );
-
-
-  const largura =
-    190;
-
-
-  const proporcao =
-    canvasPDF.height /
-    canvasPDF.width;
-
-
-  const altura =
-    largura *
-    proporcao;
-
-
-  pdf.addImage(
-    imagem,
-    "JPEG",
-    10,
-    10,
-    largura,
-    altura
-  );
-
-
-  const numero =
-    document
-      .getElementById(
-        "numero"
-      )
-      .value ||
-      "001";
-
-
-  pdf.save(
-    `recibo-${numero}.pdf`
-  );
-
-
-  /* Incrementa número */
-
-  const atual =
-    parseInt(
-      localStorage.getItem(
-        "numeroRecibo"
-      ) || "1"
-    );
-
-
-  localStorage.setItem(
-    "numeroRecibo",
-    atual + 1
-  );
-
-}
-
-
-/* =====================================================
-   COMPARTILHAR
-===================================================== */
-
-async function compartilhar() {
-
-  gerarRecibo();
-
-
-  const texto =
-    "Recibo de pagamento gerado pelo Criador de Recibo Online.";
-
-
-  if (
-    navigator.share
-  ) {
-
-    try {
-
-      await navigator.share({
-
-        title:
-          "Recibo de pagamento",
-
-        text:
-          texto,
-
-        url:
-          window.location.href
-
-      });
-
-    }
-
-    catch (erro) {
-
-      console.log(
-        "Compartilhamento cancelado."
-      );
-
-    }
-
-  }
-
-  else {
-
-    alert(
-      "Seu navegador não oferece compartilhamento direto."
-    );
-
-  }
-
-}
-
-
-/* =====================================================
-   ATUALIZAÇÃO AUTOMÁTICA
-===================================================== */
-
-campos.forEach(id => {
-
-  document
-    .getElementById(id)
-    .addEventListener(
-      "input",
-      gerarRecibo
-    );
+$("cpfRecebedor")
+.addEventListener(
+"input",
+function(){
+
+this.value =
+formatarDocumento(
+this.value
+);
+
+gerarRecibo();
 
 });
 
 
+$("cpfPagador")
+.addEventListener(
+"input",
+function(){
+
+this.value =
+formatarDocumento(
+this.value
+);
+
+gerarRecibo();
+
+});
+
+
+$("empresaDocumento")
+.addEventListener(
+"input",
+function(){
+
+this.value =
+formatarDocumento(
+this.value
+);
+
+});
+
+
+/* =========================================================
+   GERAR RECIBO
+========================================================= */
+
+function gerarRecibo(){
+
+const recebedor =
+$("recebedor").value.trim();
+
+const cpfRecebedor =
+$("cpfRecebedor").value.trim();
+
+const pagador =
+$("pagador").value.trim();
+
+const cpfPagador =
+$("cpfPagador").value.trim();
+
+const valor =
+valorNumerico();
+
+const descricao =
+$("descricao").value.trim();
+
+const cidade =
+$("cidade").value.trim();
+
+const data =
+$("data").value;
+
+const numero =
+$("numero").value.trim();
+
+const pix =
+$("pix").value.trim();
+
+
+$("previewRecebedor").textContent =
+recebedor ||
+"[Nome do recebedor]";
+
+
+$("previewAssinatura").textContent =
+recebedor ||
+"[Nome do recebedor]";
+
+
+$("previewCpfRecebedor").textContent =
+cpfRecebedor ||
+"—";
+
+
+$("previewPagador").textContent =
+pagador ||
+"[Nome do pagador]";
+
+
+$("previewCpfPagador").textContent =
+cpfPagador
+? ` — CPF/CNPJ: ${cpfPagador}`
+: "";
+
+
+$("previewValor").textContent =
+moeda(valor);
+
+
+$("previewValorExtenso").textContent =
+numeroExtenso(valor);
+
+
+$("previewDescricao").textContent =
+descricao ||
+"[descrição]";
+
+
+$("previewCidade").textContent =
+cidade ||
+"[Cidade]";
+
+
+$("previewData").textContent =
+dataBR(data);
+
+
+$("previewNumero").textContent =
+numero ||
+"001";
+
+
+/* PIX */
+
+const pixBox =
+$("previewPixBox");
+
+if(pix){
+
+pixBox.style.display =
+"block";
+
+$("previewPix").textContent =
+pix;
+
+
+/* QR CODE */
+
+$("qrcode").innerHTML="";
+
+new QRCode(
+$("qrcode"),
+{
+text:pix,
+width:110,
+height:110
+}
+);
+
+}else{
+
+pixBox.style.display =
+"none";
+
+$("qrcode").innerHTML="";
+
+}
+
+
+/* SALVAR CAMPOS */
+
+const campos = [
+"modelo",
+"recebedor",
+"cpfRecebedor",
+"numero",
+"pagador",
+"cpfPagador",
+"valor",
+"data",
+"descricao",
+"cidade",
+"pix"
+];
+
+
+campos.forEach(id => {
+
+localStorage.setItem(
+"recibo_"+id,
+$(id).value
+);
+
+});
+
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+$("logo")
+.addEventListener(
+"change",
+function(){
+
+const file =
+this.files[0];
+
+if(!file)
+return;
+
+
+const reader =
+new FileReader();
+
+
+reader.onload =
+function(e){
+
+const imagem =
+e.target.result;
+
+
+localStorage.setItem(
+"recibo_logo",
+imagem
+);
+
+
+$("logoPreview").src =
+imagem;
+
+$("logoPreview").style.display =
+"block";
+
+
+$("previewLogo").src =
+imagem;
+
+$("previewLogo").style.display =
+"block";
+
+};
+
+
+reader.readAsDataURL(file);
+
+});
+
+
+/* =========================================================
+   ASSINATURA
+========================================================= */
+
+const canvas =
+$("signaturePad");
+
+const ctx =
+canvas.getContext("2d");
+
+let desenhando=false;
+
+
+function prepararCanvas(){
+
+const rect =
+canvas.getBoundingClientRect();
+
+const ratio =
+window.devicePixelRatio || 1;
+
+
+canvas.width =
+rect.width * ratio;
+
+canvas.height =
+rect.height * ratio;
+
+
+ctx.setTransform(
+ratio,
+0,
+0,
+ratio,
+0,
+0
+);
+
+ctx.lineWidth=2;
+ctx.lineCap="round";
+ctx.lineJoin="round";
+
+}
+
+
+prepararCanvas();
+
+
+window.addEventListener(
+"resize",
+prepararCanvas
+);
+
+
+function posicao(e){
+
+const rect =
+canvas.getBoundingClientRect();
+
+return {
+x:e.clientX-rect.left,
+y:e.clientY-rect.top
+};
+
+}
+
+
+canvas.addEventListener(
+"pointerdown",
+function(e){
+
+desenhando=true;
+
+const p =
+posicao(e);
+
+ctx.beginPath();
+
+ctx.moveTo(
+p.x,
+p.y
+);
+
+canvas.setPointerCapture(e.pointerId);
+
+});
+
+
+canvas.addEventListener(
+"pointermove",
+function(e){
+
+if(!desenhando)
+return;
+
+const p =
+posicao(e);
+
+ctx.lineTo(
+p.x,
+p.y
+);
+
+ctx.stroke();
+
+});
+
+
+canvas.addEventListener(
+"pointerup",
+function(){
+
+desenhando=false;
+
+salvarAssinatura();
+
+});
+
+
+canvas.addEventListener(
+"pointercancel",
+function(){
+
+desenhando=false;
+
+});
+
+
+function salvarAssinatura(){
+
+const imagem =
+canvas.toDataURL("image/png");
+
+
+localStorage.setItem(
+"recibo_assinatura",
+imagem
+);
+
+
+$("previewSignature").src =
+imagem;
+
+$("previewSignature").style.display =
+"block";
+
+}
+
+
+function limparAssinatura(){
+
+ctx.clearRect(
+0,
+0,
+canvas.width,
+canvas.height
+);
+
+localStorage.removeItem(
+"recibo_assinatura"
+);
+
+$("previewSignature").style.display =
+"none";
+
+}
+
+
+/* =========================================================
+   CARREGAR DADOS
+========================================================= */
+
+function carregarDados(){
+
+const campos = [
+"modelo",
+"recebedor",
+"cpfRecebedor",
+"numero",
+"pagador",
+"cpfPagador",
+"valor",
+"data",
+"descricao",
+"cidade",
+"pix"
+];
+
+
+campos.forEach(id => {
+
+const salvo =
+localStorage.getItem(
+"recibo_"+id
+);
+
+if(salvo !== null)
+$(id).value =
+salvo;
+
+});
+
+
+/* LOGO */
+
+const logo =
+localStorage.getItem(
+"recibo_logo"
+);
+
+if(logo){
+
+$("logoPreview").src =
+logo;
+
+$("logoPreview").style.display =
+"block";
+
+$("previewLogo").src =
+logo;
+
+$("previewLogo").style.display =
+"block";
+
+}
+
+
+/* ASSINATURA */
+
+const assinatura =
+localStorage.getItem(
+"recibo_assinatura"
+);
+
+if(assinatura){
+
+$("previewSignature").src =
+assinatura;
+
+$("previewSignature").style.display =
+"block";
+
+}
+
+
+gerarRecibo();
+
+}
+
+
+/* =========================================================
+   NOVO RECIBO
+========================================================= */
+
+function novoRecibo(){
+
+const campos = [
+"recebedor",
+"cpfRecebedor",
+"pagador",
+"cpfPagador",
+"valor",
+"descricao",
+"cidade",
+"pix"
+];
+
+
+campos.forEach(id => {
+
+$(id).value="";
+
+localStorage.removeItem(
+"recibo_"+id
+);
+
+});
+
+
+numeroAtual++;
+
+localStorage.setItem(
+"numeroRecibo",
+numeroAtual
+);
+
+
+$("numero").value =
+String(numeroAtual)
+.padStart(3,"0");
+
+
+$("data").value =
+new Date()
+.toISOString()
+.split("T")[0];
+
+
+limparAssinatura();
+
+
+$("logoPreview").style.display =
+"none";
+
+$("previewLogo").style.display =
+"none";
+
+localStorage.removeItem(
+"recibo_logo"
+);
+
+
+gerarRecibo();
+
+}
+
+
+/* =========================================================
+   SALVAR HISTÓRICO
+========================================================= */
+
+function salvarHistorico(){
+
+gerarRecibo();
+
+
+const historico =
+JSON.parse(
+localStorage.getItem("recibosHistorico") || "[]"
+);
+
+
+const recibo = {
+
+id:Date.now(),
+
+numero:$("numero").value,
+
+recebedor:$("recebedor").value,
+
+pagador:$("pagador").value,
+
+valor:valorNumerico(),
+
+data:$("data").value,
+
+descricao:$("descricao").value,
+
+cidade:$("cidade").value,
+
+pix:$("pix").value,
+
+cpfRecebedor:$("cpfRecebedor").value,
+
+cpfPagador:$("cpfPagador").value,
+
+logo:localStorage.getItem("recibo_logo") || "",
+
+assinatura:
+localStorage.getItem("recibo_assinatura") || ""
+
+};
+
+
+historico.unshift(recibo);
+
+
+if(historico.length > 50){
+
+historico.splice(50);
+
+}
+
+
+localStorage.setItem(
+"recibosHistorico",
+JSON.stringify(historico)
+);
+
+
+alert("✓ Recibo salvo no histórico.");
+
+renderHistorico();
+
+}
+
+
+/* =========================================================
+   HISTÓRICO
+========================================================= */
+
+function renderHistorico(){
+
+const lista =
+$("historicoLista");
+
+
+const historico =
+JSON.parse(
+localStorage.getItem("recibosHistorico") || "[]"
+);
+
+
+if(!historico.length){
+
+lista.innerHTML = `
+<div style="
+padding:30px;
+text-align:center;
+color:#64748b;
+">
+📭 Nenhum recibo salvo ainda.
+</div>
+`;
+
+return;
+
+}
+
+
+lista.innerHTML =
+historico.map(r => `
+
+<div class="history-item">
+
+<div class="history-info">
+
+<strong>
+Recibo Nº ${escapeHTML(r.numero)}
+</strong>
+
+<span>
+${escapeHTML(r.pagador || "Pagador não informado")}
+→
+${escapeHTML(r.recebedor || "Recebedor não informado")}
+<br>
+${moeda(r.valor)}
+•
+${dataBR(r.data)}
+</span>
+
+</div>
+
+<div class="history-actions">
+
+<button
+class="primary"
+onclick="abrirReciboHistorico(${r.id})">
+
+Abrir
+
+</button>
+
+<button
+class="danger"
+onclick="excluirHistorico(${r.id})">
+
+Excluir
+
+</button>
+
+</div>
+
+</div>
+
+`).join("");
+
+}
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHTML(text){
+
+return String(text || "")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================================================
+   ABRIR HISTÓRICO
+========================================================= */
+
+function abrirReciboHistorico(id){
+
+const historico =
+JSON.parse(
+localStorage.getItem("recibosHistorico") || "[]"
+);
+
+
+const r =
+historico.find(
+item => item.id === id
+);
+
+
+if(!r)
+return;
+
+
+$("numero").value =
+r.numero || "";
+
+$("recebedor").value =
+r.recebedor || "";
+
+$("cpfRecebedor").value =
+r.cpfRecebedor || "";
+
+$("pagador").value =
+r.pagador || "";
+
+$("cpfPagador").value =
+r.cpfPagador || "";
+
+$("valor").value =
+Number(r.valor || 0)
+.toLocaleString(
+"pt-BR",
+{
+minimumFractionDigits:2,
+maximumFractionDigits:2
+}
+);
+
+$("data").value =
+r.data || "";
+
+$("descricao").value =
+r.descricao || "";
+
+$("cidade").value =
+r.cidade || "";
+
+$("pix").value =
+r.pix || "";
+
+
+/* LOGO */
+
+if(r.logo){
+
+$("previewLogo").src =
+r.logo;
+
+$("previewLogo").style.display =
+"block";
+
+localStorage.setItem(
+"recibo_logo",
+r.logo
+);
+
+}
+
+
+/* ASSINATURA */
+
+if(r.assinatura){
+
+$("previewSignature").src =
+r.assinatura;
+
+$("previewSignature").style.display =
+"block";
+
+localStorage.setItem(
+"recibo_assinatura",
+r.assinatura
+);
+
+}
+
+
+gerarRecibo();
+
+
 document
-  .getElementById("modelo")
-  .addEventListener(
-    "change",
-    gerarRecibo
-  );
+.querySelectorAll(".page")
+.forEach(p =>
+p.classList.remove("active")
+);
+
+$("criar").classList.add("active");
 
 
-/* =====================================================
+document
+.querySelectorAll(".tab")
+.forEach(b =>
+b.classList.remove("active")
+);
+
+document
+.querySelector(".tab")
+.classList.add("active");
+
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+
+/* =========================================================
+   EXCLUIR HISTÓRICO
+========================================================= */
+
+function excluirHistorico(id){
+
+if(!confirm(
+"Deseja excluir este recibo?"
+))
+return;
+
+
+let historico =
+JSON.parse(
+localStorage.getItem("recibosHistorico") || "[]"
+);
+
+
+historico =
+historico.filter(
+r => r.id !== id
+);
+
+
+localStorage.setItem(
+"recibosHistorico",
+JSON.stringify(historico)
+);
+
+
+renderHistorico();
+
+}
+
+
+/* =========================================================
+   DADOS DA EMPRESA
+========================================================= */
+
+function salvarEmpresa(){
+
+const dados={
+
+nome:$("empresaNome").value,
+
+documento:$("empresaDocumento").value,
+
+telefone:$("empresaTelefone").value,
+
+endereco:$("empresaEndereco").value,
+
+pix:$("empresaPix").value
+
+};
+
+
+localStorage.setItem(
+"dadosEmpresa",
+JSON.stringify(dados)
+);
+
+
+$("savedMessage").style.display =
+"block";
+
+
+setTimeout(
+() =>
+$("savedMessage").style.display="none",
+2500
+);
+
+
+/* Também preenche o recibo */
+
+$("recebedor").value =
+dados.nome || "";
+
+$("cpfRecebedor").value =
+dados.documento || "";
+
+$("pix").value =
+dados.pix || "";
+
+
+gerarRecibo();
+
+}
+
+
+function carregarEmpresa(){
+
+const dados =
+JSON.parse(
+localStorage.getItem("dadosEmpresa") || "null"
+);
+
+
+if(!dados)
+return;
+
+
+$("empresaNome").value =
+dados.nome || "";
+
+$("empresaDocumento").value =
+dados.documento || "";
+
+$("empresaTelefone").value =
+dados.telefone || "";
+
+$("empresaEndereco").value =
+dados.endereco || "";
+
+$("empresaPix").value =
+dados.pix || "";
+
+
+/* Utiliza automaticamente no recibo */
+
+if(!$("recebedor").value)
+$("recebedor").value =
+dados.nome || "";
+
+if(!$("cpfRecebedor").value)
+$("cpfRecebedor").value =
+dados.documento || "";
+
+if(!$("pix").value)
+$("pix").value =
+dados.pix || "";
+
+}
+
+
+/* =========================================================
+   PDF
+========================================================= */
+
+async function baixarPDF(){
+
+gerarRecibo();
+
+
+const recibo =
+$("receipt");
+
+
+const canvasPDF =
+await html2canvas(
+recibo,
+{
+scale:2,
+backgroundColor:"#ffffff",
+useCORS:true
+}
+);
+
+
+const imagem =
+canvasPDF.toDataURL(
+"image/jpeg",
+0.95
+);
+
+
+const {
+jsPDF
+} =
+window.jspdf;
+
+
+const pdf =
+new jsPDF(
+"p",
+"mm",
+"a4"
+);
+
+
+const margem=10;
+
+const largura=190;
+
+const altura =
+(canvasPDF.height /
+canvasPDF.width) *
+largura;
+
+
+/*
+   Se o recibo ficar maior que uma
+   página, divide automaticamente.
+*/
+
+let restante =
+altura;
+
+let posicaoY =
+margem;
+
+
+pdf.addImage(
+imagem,
+"JPEG",
+margem,
+posicaoY,
+largura,
+altura
+);
+
+
+/* Nome do arquivo */
+
+const numero =
+$("numero").value ||
+"001";
+
+
+const nome =
+($("pagador").value || "recibo")
+.replace(
+/[^a-zA-Z0-9À-ÿ ]/g,
+""
+)
+.trim()
+.replace(/\s+/g,"-");
+
+
+pdf.save(
+`recibo-${numero}-${nome || "documento"}.pdf`
+);
+
+
+/* Avança número somente se foi um recibo novo */
+
+const atual =
+parseInt(
+localStorage.getItem("numeroRecibo") || "1",
+10
+);
+
+
+if(
+String(atual).padStart(3,"0")
+===
+String(numero).padStart(3,"0")
+){
+
+localStorage.setItem(
+"numeroRecibo",
+atual+1
+);
+
+}
+
+}
+
+
+/* =========================================================
+   COMPARTILHAR
+========================================================= */
+
+async function compartilhar(){
+
+gerarRecibo();
+
+
+const numero =
+$("numero").value;
+
+
+const texto =
+`Recibo de pagamento Nº ${numero} — USC Apps`;
+
+
+if(
+navigator.share
+){
+
+try{
+
+await navigator.share({
+
+title:"Recibo de pagamento",
+
+text:texto,
+
+url:window.location.href
+
+});
+
+}catch(e){
+
+console.log(
+"Compartilhamento cancelado."
+);
+
+}
+
+}else{
+
+try{
+
+await navigator.clipboard.writeText(
+window.location.href
+);
+
+alert(
+"Link copiado para a área de transferência."
+);
+
+}catch(e){
+
+alert(
+"Seu navegador não suporta compartilhamento."
+);
+
+}
+
+}
+
+}
+
+
+/* =========================================================
+   ATUALIZAÇÃO AUTOMÁTICA
+========================================================= */
+
+[
+"recebedor",
+"cpfRecebedor",
+"pagador",
+"cpfPagador",
+"data",
+"descricao",
+"cidade",
+"pix",
+"numero",
+"modelo"
+].forEach(id => {
+
+$(id).addEventListener(
+"input",
+gerarRecibo
+);
+
+$(id).addEventListener(
+"change",
+gerarRecibo
+);
+
+});
+
+
+/* =========================================================
    INICIAR
-===================================================== */
+========================================================= */
+
+carregarEmpresa();
 
 carregarDados();
+
+renderHistorico();
 
 </script>
 
