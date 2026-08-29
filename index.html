@@ -4,9 +4,41 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Crie recibos profissionais online grátis. Gere, assine, adicione PIX, logo e baixe seu recibo em PDF.">
-<meta name="author" content="USC Apps">
-<title>Recibo Fácil — Criador de Recibos Online</title>
+
+<!-- SEO OTIMIZADO -->
+<title>Gerador de Recibo Online Grátis + PDF | FazerRecibos</title>
+<meta name="description" content="Crie recibos profissionais online grátis. Gere, assine, adicione PIX, logo e baixe seu recibo em PDF. Ferramenta segura e sem cadastro.">
+<meta name="author" content="FazerRecibos">
+<link rel="canonical" href="https://www.fazerrecibos.com.br/">
+
+<!-- OPEN GRAPH / REDES SOCIAIS -->
+<meta property="og:title" content="Criador de Recibos Profissional Grátis">
+<meta property="og:description" content="Gere recibos em PDF com assinatura, logo e QR Code PIX. Ferramenta 100% gratuita, segura e sem marcas d'água.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.fazerrecibos.com.br/">
+<meta property="og:image" content="https://www.fazerrecibos.com.br/og-image.jpg">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- SCHEMA MARKUP: SOFTWARE APPLICATION -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Recibo Fácil - FazerRecibos",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "BRL"
+  },
+  "description": "Ferramenta gratuita para criar recibos profissionais com suporte a assinatura digital, logo e QR Code PIX. Dados processados localmente.",
+  "url": "https://www.fazerrecibos.com.br/",
+  "featureList": "Assinatura Digital, QR Code PIX, Exportação PDF, Logo Personalizada, Histórico Local"
+}
+</script>
+
 <link rel="icon" href="https://play-lh.googleusercontent.com/Ki0OaYHMw67Yw1ETHV2eyKZAST7JMVjCIrNGzmcadwHEkhq3BU_CYtt1IC9ZqKcE7iA=w480-h960-rw">
 
 <!-- Bibliotecas -->
@@ -15,69 +47,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
 <style>
-/* SEO CONTENT STYLES */
-.seo-content {
-    max-width: 800px;
-    margin: 60px auto 40px;
-    padding: 0 20px;
-    color: var(--text);
-    line-height: 1.8;
-}
-.seo-content h2 {
-    font-size: 1.6rem;
-    margin-top: 35px;
-    margin-bottom: 15px;
-    color: var(--blue2);
-}
-.seo-content h3 {
-    font-size: 1.25rem;
-    margin-top: 25px;
-    margin-bottom: 10px;
-}
-.seo-content p, .seo-content li {
-    font-size: 1.05rem;
-    margin-bottom: 15px;
-    color: #334155;
-}
-.seo-content ul {
-    padding-left: 25px;
-    margin-bottom: 20px;
-}
-.seo-content strong {
-    color: var(--blue);
-}
-
-/* FAQ ACCORDION */
-.faq-item {
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    margin-bottom: 10px;
-    overflow: hidden;
-    background: #fff;
-}
-.faq-item summary {
-    padding: 18px 20px;
-    font-weight: bold;
-    cursor: pointer;
-    list-style: none;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 1.05rem;
-}
-.faq-item summary::-webkit-details-marker { display: none; }
-.faq-item summary::after { content: '+'; font-size: 1.4rem; color: var(--blue); }
-.faq-item[open] summary::after { content: '−'; }
-.faq-item[open] summary { background: #f8fafc; }
-.faq-answer {
-    padding: 15px 20px 20px;
-    font-size: 0.98rem;
-    color: #475569;
-    line-height: 1.7;
-}
-
-
-
 *{box-sizing:border-box;}
 :root{
     --blue:#0757b8; --blue2:#003b82; --green:#16a34a; --green2:#15803d;
@@ -145,13 +114,12 @@ button{border:0;border-radius:10px;padding:12px 16px;font-weight:bold;cursor:poi
     min-height:700px;
     padding:0;
     border:1px solid #ccc;
-    font-family:'Times New Roman', Times, serif; /* Fonte clássica de documentos */
+    font-family:'Times New Roman', Times, serif;
     position:relative;
     display:flex;
     flex-direction:column;
 }
 
-/* Borda dupla interna para aspecto oficial */
 .receipt-inner{
     border:2px solid #000;
     margin:8px;
@@ -191,7 +159,6 @@ button{border:0;border-radius:10px;padding:12px 16px;font-weight:bold;cursor:poi
     font-family:Arial, sans-serif;
 }
 
-/* Layout com valor destacado na lateral */
 .receipt-body{
     display:flex;
     gap:30px;
@@ -280,6 +247,69 @@ button{border:0;border-radius:10px;padding:12px 16px;font-weight:bold;cursor:poi
     padding-top:15px;
 }
 
+/* =========================================
+   CONTEÚDO SEO
+   ========================================= */
+.seo-content {
+    max-width: 800px;
+    margin: 60px auto 40px;
+    padding: 0 20px;
+    color: var(--text);
+    line-height: 1.8;
+}
+.seo-content h2 {
+    font-size: 1.6rem;
+    margin-top: 35px;
+    margin-bottom: 15px;
+    color: var(--blue2);
+}
+.seo-content h3 {
+    font-size: 1.25rem;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+.seo-content p, .seo-content li {
+    font-size: 1.05rem;
+    margin-bottom: 15px;
+    color: #334155;
+}
+.seo-content ul {
+    padding-left: 25px;
+    margin-bottom: 20px;
+}
+.seo-content strong {
+    color: var(--blue);
+}
+
+/* FAQ ACCORDION */
+.faq-item {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    background: #fff;
+}
+.faq-item summary {
+    padding: 18px 20px;
+    font-weight: bold;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.05rem;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after { content: '+'; font-size: 1.4rem; color: var(--blue); }
+.faq-item[open] summary::after { content: '−'; }
+.faq-item[open] summary { background: #f8fafc; }
+.faq-answer {
+    padding: 15px 20px 20px;
+    font-size: 0.98rem;
+    color: #475569;
+    line-height: 1.7;
+}
+
 /* APP BANNER & HISTORY */
 .app-banner{background:radial-gradient(circle at top right,rgba(255,255,255,.18),transparent 35%),linear-gradient(135deg,#0757b8,#002f6c);color:#fff;border-radius:20px;padding:25px;display:flex;align-items:center;gap:20px;margin-top:25px;}
 .app-icon{width:72px;height:72px;border-radius:17px;object-fit:cover;}
@@ -319,7 +349,7 @@ footer{text-align:center;padding:35px 20px 110px;font-size:.9rem;color:var(--mut
 /* IMPRESSÃO */
 @media print{
     body{background:#fff;}
-    header,.tabs,.form-card,.app-banner,footer,.fixed-app,.print-buttons{display:none!important;}
+    header,.tabs,.form-card,.app-banner,footer,.fixed-app,.print-buttons,.seo-content{display:none!important;}
     .container{width:100%;margin:0;}
     .grid{display:block;}
     .card{border:0;box-shadow:none;padding:0;}
@@ -506,7 +536,113 @@ footer{text-align:center;padding:35px 20px 110px;font-size:.9rem;color:var(--mut
     </section>
 </main>
 
-<footer>© 2026 USC Apps. Todos os direitos reservados.<br><br>Seus dados são armazenados localmente no dispositivo.</footer>
+<!-- =====================================================
+     CONTEÚDO SEO OTIMIZADO
+===================================================== -->
+<article class="seo-content">
+    <h2>Como fazer um recibo profissional online?</h2>
+    <p>Criar um <strong>recibo de pagamento válido</strong> não exige mais papel e caneta. Com o FazerRecibos, você gera documentos profissionais em segundos, diretamente pelo navegador ou celular. O processo é simples:</p>
+    <ul>
+        <li>Preencha os dados do pagador e recebedor;</li>
+        <li>Informe o valor e a descrição do serviço ou produto;</li>
+        <li>Adicione sua assinatura digital e logo (opcional);</li>
+        <li>Baixe o <strong>recibo em PDF</strong> pronto para enviar por WhatsApp ou e-mail.</li>
+    </ul>
+    <p>Todos os dados são processados localmente no seu dispositivo, garantindo <strong>privacidade total</strong> — nenhuma informação é enviada para servidores externos.</p>
+
+    <h2>O que torna um recibo juridicamente válido?</h2>
+    <p>Muitas pessoas confundem recibo com nota fiscal. O recibo é um documento comprobatório de pagamento essencial para autônomos, MEIs e pequenas empresas. Para ter validade jurídica, ele deve conter obrigatoriamente:</p>
+    <ul>
+        <li><strong>Identificação completa</strong> de quem paga e quem recebe (nome e CPF/CNPJ);</li>
+        <li><strong>Valor numérico e por extenso</strong> (evita adulterações);</li>
+        <li><strong>Descrição clara</strong> do motivo do pagamento;</li>
+        <li><strong>Data e local</strong> da emissão;</li>
+        <li><strong>Assinatura do recebedor</strong> (digital ou manuscrita).</li>
+    </ul>
+    <p>Nossa ferramenta inclui automaticamente todos esses campos no modelo profissional, assegurando conformidade com as práticas comerciais brasileiras.</p>
+
+    <h3>Recibo com PIX: Como funciona?</h3>
+    <p>Ao adicionar uma chave PIX no formulário, o sistema gera automaticamente um <strong>QR Code funcional</strong> no recibo. Isso permite que o pagador escaneie e comprove o pagamento instantaneamente, unindo a tradição do documento escrito com a agilidade do Pix.</p>
+
+    <h2>Perguntas Frequentes sobre Recibos</h2>
+    
+    <details class="faq-item">
+        <summary>Recibo substitui Nota Fiscal?</summary>
+        <div class="faq-answer">Não. O recibo comprova que houve pagamento, mas não substitui a Nota Fiscal (NF-e ou NFS-e) quando esta é exigida por lei. Para serviços formais entre empresas, sempre emita a NF. O recibo é ideal para transações informais, aluguel entre pessoas físicas, freelancers e controle interno.</div>
+    </details>
+
+    <details class="faq-item">
+        <summary>Posso usar este recibo para declaração de Imposto de Renda?</summary>
+        <div class="faq-answer">Sim, desde que contenha CPF/CNPJ de ambas as partes, valor e descrição. Recibos de aluguel, serviços médicos, odontológicos e educacionais emitidos corretamente são aceitos pela Receita Federal como comprovantes de dedução.</div>
+    </details>
+
+    <details class="faq-item">
+        <summary>A assinatura digital tem validade legal?</summary>
+        <div class="faq-answer">A assinatura feita na tela (canvas) funciona como uma representação visual da vontade das partes. Para contratos de alto valor ou exigência cartorial, recomenda-se certificado digital ICP-Brasil. Para recibos do dia a dia, a assinatura visual combinada com outros dados identificadores possui amplo aceite comercial.</div>
+    </details>
+
+    <details class="faq-item">
+        <summary>Meus dados ficam salvos na internet?</summary>
+        <div class="faq-answer">Absolutamente não. Utilizamos apenas <code>localStorage</code> do navegador. Seus recibos, logos e assinaturas nunca saem do seu dispositivo. Se limpar o cache do navegador, os dados serão apagados — por isso recomendamos baixar o PDF de cada recibo gerado.</div>
+    </details>
+
+    <details class="faq-item">
+        <summary>É realmente gratuito?</summary>
+        <div class="faq-answer">Sim. O FazerRecibos é 100% gratuito, sem limites de emissão, sem cadastro obrigatório e sem marcas d'água. Nosso modelo de negócio é baseado no app mobile opcional, mantendo a versão web livre para todos.</div>
+    </details>
+</article>
+
+<!-- SCHEMA FAQ (SEO ESTRUTURADO) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Recibo substitui Nota Fiscal?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Não. O recibo comprova que houve pagamento, mas não substitui a Nota Fiscal (NF-e ou NFS-e) quando esta é exigida por lei. Para serviços formais entre empresas, sempre emita a NF. O recibo é ideal para transações informais, aluguel entre pessoas físicas, freelancers e controle interno."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Posso usar este recibo para declaração de Imposto de Renda?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sim, desde que contenha CPF/CNPJ de ambas as partes, valor e descrição. Recibos de aluguel, serviços médicos, odontológicos e educacionais emitidos corretamente são aceitos pela Receita Federal como comprovantes de dedução."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "A assinatura digital tem validade legal?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A assinatura feita na tela funciona como representação visual da vontade das partes. Para contratos de alto valor, recomenda-se certificado ICP-Brasil. Para recibos do dia a dia, a assinatura visual combinada com dados identificadores possui amplo aceite comercial."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Meus dados ficam salvos na internet?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Não. Utilizamos apenas localStorage do navegador. Seus recibos, logos e assinaturas nunca saem do seu dispositivo. Recomendamos baixar o PDF de cada recibo gerado."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "É realmente gratuito?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sim. O FazerRecibos é 100% gratuito, sem limites de emissão, sem cadastro obrigatório e sem marcas d'água."
+      }
+    }
+  ]
+}
+</script>
+
+<footer>© 2026 FazerRecibos. Todos os direitos reservados.<br><br>Seus dados são armazenados localmente no dispositivo.</footer>
 
 <div class="fixed-app">
     <img src="https://play-lh.googleusercontent.com/Ki0OaYHMw67Yw1ETHV2eyKZAST7JMVjCIrNGzmcadwHEkhq3BU_CYtt1IC9ZqKcE7iA=w240-h480-rw" alt="Recibo para Clientes">
@@ -830,7 +966,7 @@ async function baixarPDF(){
 async function compartilhar(){
     gerarRecibo();
     const numero=$("numero").value;
-    const texto=`Recibo de pagamento Nº ${numero} — USC Apps`;
+    const texto=`Recibo de pagamento Nº ${numero} — FazerRecibos`;
     if(navigator.share){try{await navigator.share({title:"Recibo de pagamento",text:texto,url:window.location.href});}catch(e){console.log("Compartilhamento cancelado.");}}
     else{try{await navigator.clipboard.writeText(window.location.href);alert("Link copiado para a área de transferência.");}catch(e){alert("Seu navegador não suporta compartilhamento.");}}
 }
